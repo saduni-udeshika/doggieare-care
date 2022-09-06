@@ -16,7 +16,7 @@ app.use(express.json());
 const initialize = async () => {
   try {
     dotnv.config();
-    //await mongoose.connect(process.env.MONGO_CONNECT_URL);
+    await mongoose.connect(process.env.MONGO_CONNECT_URL);
     //await initAdmin();
   } catch (e) {
     console.log(e);
