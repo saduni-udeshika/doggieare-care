@@ -1,5 +1,6 @@
 import MedicineModel from '../models/Medicine.js';
 import { validateMedicine } from '../validators/medicineValidator.js';
+
 export const createMedicine = async (req, res, _next) => {
     const { error, value } = validateMedicine({
       name: req.body.name,
@@ -19,3 +20,14 @@ export const createMedicine = async (req, res, _next) => {
     await medicine.save();
     res.status(200).json(medicine.toJSON());
   };
+
+  export const getMedicine = async (req, res, _next) => {
+    const medicines = await MedicineModel.find();
+    res.status(200).json(
+      medicines.map((n) => {
+        const medicine = n.toJSON();
+        return medicine;
+      })
+    );
+  };
+  

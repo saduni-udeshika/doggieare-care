@@ -1,11 +1,11 @@
 import express from 'express';
 import {
-  createMedicine,
+  createMedicine, getMedicine,
 } from '../controllers/medicineController.js';
 
 const router = express.Router();
 
-//router.get('/', authMiddleWare, handleException(getNotes));
+router.get('/',getMedicine);
 
 router.post('/', createMedicine);
 
