@@ -4,7 +4,7 @@ export const createMedicine = async (req, res, _next) => {
     const { error, value } = validateMedicine({
       name: req.body.name,
       quantity: req.body.quantity,
-      expDate: req.body.expDate,
+      expDate: new Date(req.body.expDate),
       category: req.body.category,
       description: req.body.description,
       imgUrl: req.body.imgUrl,
@@ -14,7 +14,6 @@ export const createMedicine = async (req, res, _next) => {
       return;
     }
     const medicine = new MedicineModel({
-      userId: req.body._user._id,
       ...value,
     });
     await medicine.save();
