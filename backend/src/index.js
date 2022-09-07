@@ -3,15 +3,14 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotnv from 'dotenv';
 //import routers like this
-//import { noteRouter } from './services/noteService.js';
+import { medicineRouter } from './routes/medicineRoute.js';
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-
-//app.use('/user', userRouter);
-//app.use('/admin', adminRouter);
+app.use('/medicine', medicineRouter)
 
 const initialize = async () => {
   try {
