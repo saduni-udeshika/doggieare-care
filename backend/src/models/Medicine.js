@@ -2,9 +2,8 @@ import mongoose from 'mongoose';
 
 const MedicineSchema = new mongoose.Schema(
     {
-    //   adminId: { type: mongoose.Schema.Types.ObjectId, ref: 'Admin' },
       name: String,
-      quantity: String,
+      quantity: Number,
       expDate: Date,
       category: String,
       description: String,
