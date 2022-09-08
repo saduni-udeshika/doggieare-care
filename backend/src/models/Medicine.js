@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const MedicineSchema = new mongoose.Schema(
     {
-      name: String,
+      medicineName: String,
       quantity: Number,
       expDate: Date,
       category: String,
