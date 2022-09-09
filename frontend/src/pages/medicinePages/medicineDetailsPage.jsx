@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getMedicine } from '../services/medicineService';
+import { getMedicine } from '../../services/medicineService';
 
 export const MedicineDetailsPage = () => {
     const [medicines, setMedicines] = useState([]);

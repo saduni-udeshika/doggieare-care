@@ -7,5 +7,11 @@ export const getMedicine = async () => {
 }
 
 export const createMedicine = async (medicine) => {
-    return await http.post(serviceUrl, medicine);
+    return await http.post(serviceUrl, medicine)
+    .then(() => {
+        alert("Medicine added");
+      })
+      .catch((err) => {
+        alert(err);
+      });
 }
