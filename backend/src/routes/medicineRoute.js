@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  createMedicine, getMedicine,
+  createMedicine, deleteMedicine, getMedicine, updateMedicine,
 } from '../controllers/medicineController.js';
 
 const router = express.Router();
@@ -9,8 +9,8 @@ router.get('/',getMedicine);
 
 router.post('/', createMedicine);
 
-//router.delete('/', authMiddleWare, handleException(deleteNote));
+router.delete('/:id',  deleteMedicine);
 
-//router.patch('/', authMiddleWare, handleException(updateNote));
+router.put('/:id', updateMedicine);
 
 export const medicineRouter = router;

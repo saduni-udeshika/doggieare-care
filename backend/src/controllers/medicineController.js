@@ -31,43 +31,36 @@ export const createMedicine = async (req, res, _next) => {
     );
   };
 
-  // export const updateMedicine = async (req, res, _next) => {
-  //   const { error, value } = validateMedicine({
-  //     name: req.body.name,
-  //     quantity: req.body.quantity,
-  //     expDate: new Date(req.body.expDate),
-  //     category: req.body.category,
-  //     description: req.body.description,
-  //     imgUrl: req.body.imgUrl,
-  //   });
-  //   if (error) {
-  //     res.status(400).send(error.message);
-  //     return;
-  //   }
-  //   const medicine = await MedicineModel.findById(req.query.id).exec();
-  //   if (medicine.toJSON().userId.toString() !== req.body._user._id.toString()) {
-  //     res.status(403).send(error.message);
-  //     return;
-  //   }
-  //   await MedicineModel.findByIdAndUpdate(req.query.id, {
-  //     $set: {
-  //       title: value.title,
-  //       description: value.description,
-  //     },
-  //   }).exec();
-  //   res.status(200).send();
-  // };
+  export const updateMedicine = async (req, res, _next) => {
+      let id = req.params.id;
+      const {medicineName, quantity, expDate, category, description, imgUrl} =req.body;
   
-  // export const deleteMedicine = async (req, res, _next) => {
-  //   if (!req.query.id) {
-  //     res.status(400).send(error.message);
-  //   }
-  //   const medicine = await MedicineModel.findById(req.query.id).exec();
-  //   if (medicine.toJSON().userId.toString() !== req.body._user._id.toString()) {
-  //     res.status(403).send(error.message);
-  //     return;
-  //   }
-  //   await MedicineModel.findByIdAndDelete(req.query.id);
-  //   res.status(200).send();
-  // };
+      const medicine = {
+        medicineName,
+        quantity,
+        expDate,
+        category,
+        description,
+        imgUrl,
+      }  
+      const update = await MedicineModel.findByIdAndUpdate(id,medicine)
+      .then(() => {
+      res.status(200).send({status: "Medicine update"})
+   }).catch((err) => {
+      console.log(err);
+      res.status(500).send({status: "Error with updating data"});
+   })
+  };
+  
+  export const deleteMedicine = async (req, res, _next) => {
+    let Id = req.params.id;
+
+    await MedicineModel.findByIdAndDelete(Id)
+    .then(() => {
+        res.status(200).send({status: "Medicine delete"});
+    }).catch(() => {
+        res.send(err.message);
+        res.status(500).send({status: "Error with delete medicine", error: err.message})
+    })
+  };
   

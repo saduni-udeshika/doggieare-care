@@ -26,7 +26,8 @@ export const MedicinePage = () => {
   const sendMedicineData = async (event) => {
     event.preventDefault();
     await createMedicine(inputValues);
-    setInputValues();
+
+    window.location("/medicines")
   };
   return (
     <div
