@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 export const medicineValidator = Joi.object({
-  name: Joi.string().label('Name').required(),
+  medicineName: Joi.string().label('Medicine Name').required(),
   quantity: Joi.number().label("Quantity").required(),
   category: Joi.string().label('Category').required(),
   expDate: Joi.date().label('Date').required(),
