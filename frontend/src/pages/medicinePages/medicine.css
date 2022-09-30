@@ -1,0 +1,18 @@
+img{
+    width :120px;
+    height: 120px;
+    margin: 2%;
+    padding: 0 1%;
+}
+.medicine-card{
+    border: none;
+    margin: 3%;
+    float: left;
+}
+p{
+    color: rgb(255, 255, 255);
+    line-height: 0.5px;
+}
+.description{
+    font-size: small;
+}
