@@ -1,6 +1,6 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
-export const medicineValidator = Joi.object({
+const medicineValidator = Joi.object({
   medicineName: Joi.string().label('Medicine Name').required(),
   quantity: Joi.number().label("Quantity").required(),
   category: Joi.string().label('Category').required(),
@@ -9,6 +9,7 @@ export const medicineValidator = Joi.object({
   imgUrl: Joi.string().label('Url').required(),
 });
 
-export const validateMedicine= (data) => {
+const validateMedicine= (data) => {
   return medicineValidator.validate(data);
 };
+module.exports = {validateMedicine};
