@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import Form from "react-bootstrap/Form";
+import {MdEdit, MdDelete} from "react-icons/md";
 import Button from "react-bootstrap/esm/Button";
 
 export const MedicineDetailsPage = () => {
@@ -90,6 +91,8 @@ export const MedicineDetailsPage = () => {
                 <div>
                   <img src={medicine.imgUrl} alt="medicine" />
                   <br />
+                  <MdDelete style={{color: "red", float: "right", margin: "4px" }}/>
+                  <MdEdit style={{color: "green", float: "right", margin: "4px" }}/>
                   <br />
                   <p style={{ color: "#A4DE02" }}>{medicine.medicineName}</p>
                   <br />
