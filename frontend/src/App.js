@@ -6,6 +6,10 @@ import { MedicineDetailsPage } from './pages/medicinePages/medicineDetailsPage';
 import AddDog from './pages/dogsPages/addDog';
 import AddHealthDetails from './pages/dogsPages/addHealthDetails'
 import ViewAll from './pages/dogsPages/viewDogs'
+import Addappointment from "./screen/Addappointment";
+import AddUser from "./screen/AddUser";
+import Login from "./screen/Login";
+import Viewappointment from "./screen/Viewappointment";
 
 function App() {
   return (
@@ -18,6 +22,10 @@ function App() {
         <Route path="/addHealthDetails/:id" element={<AddHealthDetails />} />
         <Route path="/viewDogs" element={<ViewAll />} />
 
+        <Route exact path="/addappointment" element={<Addappointment />} />
+        <Route exact path="/adduser" element={<AddUser/>} />
+        <Route exact path="/viewappointment" element={<Viewappointment/>} />
+        <Route exact path="/login" element={<Login/>} />
       </Routes>
     </BrowserRouter>
     </div>
