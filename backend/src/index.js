@@ -3,6 +3,7 @@ const cors = require("cors");
 const  mongoose = require('mongoose');
 require("dotenv").config();
 const medicineRouter = require('./routes/medicineRoute.js');
+const dogRouter = require('./routes/dogRouter')
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/medicine', medicineRouter)
+app.use('/dog' , dogRouter)
 
 const initialize = async () => {
   try {
