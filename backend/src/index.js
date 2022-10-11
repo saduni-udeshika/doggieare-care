@@ -1,9 +1,8 @@
-import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import dotnv from 'dotenv';
-//import routers like this
-import { medicineRouter } from './routes/medicineRoute.js';
+const express = require("express");
+const cors = require("cors");
+const  mongoose = require('mongoose');
+require("dotenv").config();
+const medicineRouter = require('./routes/medicineRoute.js');
 
 const app = express();
 
@@ -14,7 +13,6 @@ app.use('/medicine', medicineRouter)
 
 const initialize = async () => {
   try {
-    dotnv.config();
     await mongoose.connect(process.env.MONGO_CONNECT_URL);
     //await initAdmin();
   } catch (e) {

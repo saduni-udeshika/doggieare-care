@@ -1,7 +1,7 @@
-import MedicineModel from '../models/Medicine.js';
-import { validateMedicine } from '../validators/medicineValidator.js';
+const MedicineModel = require('../models/Medicine.js');
+const { validateMedicine } = require('../validators/medicineValidator.js');
 
-export const createMedicine = async (req, res, _next) => {
+module.exports.createMedicine = async (req, res, _next) => {
     const { error, value } = validateMedicine({
       medicineName: req.body.medicineName,
       quantity: req.body.quantity,
@@ -21,7 +21,7 @@ export const createMedicine = async (req, res, _next) => {
     res.status(200).json(medicine.toJSON());
   };
 
-  export const getMedicine = async (req, res, _next) => {
+  module.exports.getMedicine = async (req, res, _next) => {
     const medicines = await MedicineModel.find();
     res.status(200).json(
       medicines.map((n) => {
@@ -31,7 +31,7 @@ export const createMedicine = async (req, res, _next) => {
     );
   };
 
-  export const updateMedicine = async (req, res, _next) => {
+  module.exports.updateMedicine = async (req, res, _next) => {
       let id = req.params.id;
       const {medicineName, quantity, expDate, category, description, imgUrl} =req.body;
   
@@ -52,10 +52,10 @@ export const createMedicine = async (req, res, _next) => {
    })
   };
   
-  export const deleteMedicine = async (req, res, _next) => {
-    let Id = req.params.id;
+  module.exports. deleteMedicine = async (req, res, _next) => {
+    let id = req.params.id;
 
-    await MedicineModel.findByIdAndDelete(Id)
+    await MedicineModel.findByIdAndDelete(id)
     .then(() => {
         res.status(200).send({status: "Medicine delete"});
     }).catch(() => {

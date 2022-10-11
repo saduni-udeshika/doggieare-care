@@ -1,7 +1,5 @@
-import express from 'express';
-import {
-  createMedicine, deleteMedicine, getMedicine, updateMedicine,
-} from '../controllers/medicineController.js';
+const express = require('express');
+const {createMedicine, deleteMedicine, getMedicine, updateMedicine} = require('../controllers/medicineController.js');
 
 const router = express.Router();
 
@@ -13,4 +11,4 @@ router.delete('/:id',  deleteMedicine);
 
 router.put('/:id', updateMedicine);
 
-export const medicineRouter = router;
+module.exports = router;
