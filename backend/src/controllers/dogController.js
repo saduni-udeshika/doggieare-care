@@ -45,40 +45,35 @@ exports.addNewDog= async (req, res) => {
     })
     }
 
-// //delete existing one
-// exports.deleteTopicEvaluation = async (req, res) => {
-//     let topicID = req.params.id;
+//delete existing one
+exports.deleteDog = async (req, res) => {
+    let dogid = req.params.id;
    
-//     await SendFeedbak.findByIdAndDelete(topicID).then(() => {
-//       res.status(200).json({ status: "Feedback Deleted" });
-//     }).catch((error) => {
-//       res.status(500).json({ status: "Error with Deleting", error: error.message });
-//     })
-//   }
+    await dogsDetails.findByIdAndDelete(dogid).then(() => {
+      res.status(200).json({ status: "Deleted Successfully" });
+    }).catch((error) => {
+      res.status(500).json({ status: "Error with Deleting", error: error.message });
+    })
+  }
    
-//   //update 
-//   exports.updateEvaTopic= async (req, res) => { 
-//     //fetch id from url
-//     let topicID = req.params.id;
-//     const {groupno,topic, staus,supervisor,feedback} = req.body;
+ //update 
+ exports.updateDog= async (req, res) => { 
+    //fetch id from url
+    let dogid = req.params.id;
+    const {dogName, ownerName,address,dob,breed,sex,image,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor} = req.body;
   
-//     const updateTopic = {
-//       groupno,
-//       topic,
-//       supervisor,
-//       staus,
-//       feedback
-//     }
+    const updateDog = {
+        dogName,ownerName,address,dob,breed,sex,image,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor
+    }
   
   
-//     const update = await SendFeedbak.findByIdAndUpdate(topicID, updateTopic).then(() => {
-//       res.status(200).send({status: "Result updated"})
-//     }).catch((err) => {
-//         console.log(err);
-//         res.status(500).send({status: "Error with updating data", error: err.message});
-//     })   
-//   }
-
+    const update = await dogsDetails.findByIdAndUpdate(dogid, updateDog).then(() => {
+      res.status(200).send({status: "Result updated"})
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({status: "Error with updating data", error: err.message});
+    })   
+  }
 
 //view 
 exports.viewDogs= async (req, res) => { 
