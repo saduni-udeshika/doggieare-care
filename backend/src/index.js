@@ -14,7 +14,7 @@ app.use('/medicine', medicineRouter)
 const initialize = async () => {
   try {
     await mongoose.connect(process.env.MONGO_CONNECT_URL);
-    //await initAdmin();
+    console.log("Mongodb connection success!");
   } catch (e) {
     console.log(e);
   }
