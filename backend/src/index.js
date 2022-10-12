@@ -4,6 +4,9 @@ const  mongoose = require('mongoose');
 require("dotenv").config();
 const medicineRouter = require('./routes/medicineRoute.js');
 const dogRouter = require('./routes/dogRouter')
+const rescuedDogRouter =require("./routes/rescuedDogRoute.js"); //import  rescuedDogRoute
+
+
 
 const app = express();
 
@@ -12,6 +15,7 @@ app.use(express.json());
 
 app.use('/medicine', medicineRouter)
 app.use('/dog' , dogRouter)
+app.use("/createRescuedDog",rescuedDogRouter); //create  rescuedDogRoute 
 
 const initialize = async () => {
   try {

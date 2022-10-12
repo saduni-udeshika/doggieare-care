@@ -10,6 +10,8 @@ import Addappointment from "./screen/Addappointment";
 import AddUser from "./screen/AddUser";
 import Login from "./screen/Login";
 import Viewappointment from "./screen/Viewappointment";
+import ViewRescuedDogs from "./components/ViewRescuedDogs";
+import Adoption from "./components/Adoption";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route exact path="/adduser" element={<AddUser/>} />
         <Route exact path="/viewappointment" element={<Viewappointment/>} />
         <Route exact path="/login" element={<Login/>} />
+        <Route exact path="/viewstrayPuppies" element={<ViewRescuedDogs/>} />
+        <Route exact path="/adoption" element={<Adoption/>} />
       </Routes>
     </BrowserRouter>
     </div>
