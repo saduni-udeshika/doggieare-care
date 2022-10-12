@@ -6,6 +6,10 @@ export const viewDogs = async () => {
     return await http.get(serviceUrl);
 }
 
+export const dogsLists = async () => {
+  return await http.get(serviceUrl);
+}
+
 export const addNewDog = async (dog) => {
     return await http.post(serviceUrl, dog)
     .then(() => {

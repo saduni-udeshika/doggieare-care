@@ -12,6 +12,7 @@ import Login from "./screen/Login";
 import Viewappointment from "./screen/Viewappointment";
 import ViewRescuedDogs from "./components/ViewRescuedDogs";
 import Adoption from "./components/Adoption";
+import {DogsList} from "./pages/dogsPages/dogsList";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/addDog" element={<AddDog />} />
         <Route path="/addHealthDetails/:id" element={<AddHealthDetails />} />
         <Route path="/viewDogs" element={<ViewAll />} />
+        <Route path="/dogsList" element={<DogsList />} />
 
         <Route exact path="/addappointment" element={<Addappointment />} />
         <Route exact path="/adduser" element={<AddUser/>} />

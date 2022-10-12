@@ -23,7 +23,7 @@ function AddHealthDetails() {
 
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`http://localhost:5000/dog/get/${id}`)
+    axios.get(`http://localhost:8000/dog/get/${id}`)
       .then((res) => {
         // (res.data);
         console.log(res.data.dog);
