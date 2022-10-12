@@ -4,28 +4,29 @@ import axios from "axios";
 import { FaPencilAlt, FaTrashAlt,FaLock } from "react-icons/fa";
 import { Fragment } from "react";
 
-function Viewappointment(props) {
-    const [appointment, setappointment] = useState([]);
+function ViewRescuedDogs(props) {
+    const [rescuedDogs, setRescuedDogs] = useState([]);
     const [search, setSearch] = useState("");
+    const [state, setState] = useState("adopted");
     const space2 = <Fragment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Fragment>
 
     useEffect(() => {
 
         //get funtion
-        function getappointment() {
-            axios.get("http://localhost:5000/appointment/").then((res) => {
-                setappointment(res.data);
+        function geRescuedDogs() {
+            axios.get("http://localhost:5000/createRescuedDog/").then((res) => {
+                setRescuedDogs(res.data);
             }).catch((err) => {
                 alert(err.message);
             })
         }
-        getappointment();
+        geRescuedDogs();
     }, [])
 
     //delete funtion
     function onDelete(_id){
         console.log(_id);
-        axios.delete("http://localhost:5000/appointment/"+_id ).then((res) =>{
+        axios.delete("http://localhost:5000/createRescuedDog/"+_id ).then((res) =>{
            alert('Deleted Successfully'); 
            window.location.reload();
        }).catch((err) => {
@@ -33,11 +34,12 @@ function Viewappointment(props) {
        })
       }
 
-    
-      function handleShow(_id){
-        
-      }
 
+  //update rescued dog details
+  function handleShow(_id){}
+
+  //Adopt Puppy
+  function adoptPuppy(_id){}
     return (
         <div style={{
             backgroundColor: '#010020',
@@ -53,7 +55,7 @@ function Viewappointment(props) {
                 }}>
 <div style={{ paddingBottom: "8vh", paddingTop: "5vh", paddingLeft: "8vh", paddingRight: "5vh" }}>
             <div style={{ paddingBottom: "5vh", paddingTop: "5vh", paddingLeft: "5vh", paddingRight: "5vh" }}>
-                <h1 style={{color:'white'}}>Table</h1>
+                <h1 style={{color:'white'}}>View Puppies Details</h1>
                 <div style={{ paddingleft: "10vh", paddingBottom: "1vh", paddingTop: "1vh" }} >
 
                 <div style={{ paddingleft: "2vh", paddingBottom: "1vh", paddingTop: "1vh" }}>
@@ -72,46 +74,55 @@ function Viewappointment(props) {
                         
                         <tr>
 
-                            <th>Name</th>
-                            <th>Contact</th>
-                            <th>NIC</th>
-                            <th>DogID</th>
-                            <th>Fee</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Reason</th>
+                            
+                            <th>Registerd Date</th>
+                            <th>Dog Name</th>
+                            <th>Dog Colour</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Perspective Pet Parents</th>
+                            <th>Contact No</th>
+                            <th>Adopt Date</th>
+                            <th>Status</th>
                             <th>Edit</th>
+                            <th><Button>Adopt Puppy</Button></th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        {appointment.filter(Appointment => {
+                        {rescuedDogs.filter(RescuedDogs => {
                             if (search === "") {
-                                return Appointment
+                                return RescuedDogs
                             }
-                            else if (Appointment.name.toLowerCase().includes(search.toLowerCase())) {
-                                return Appointment
+                            else if (RescuedDogs.dogName.toLowerCase().includes(search.toLowerCase())) {
+                                return RescuedDogs
                             }
                         }).
-                            map((Appointment) => {
+                            map((RescuedDogs) => {
 
                                 return (
-                                    <tr key={Appointment._id}>
-                                        <td>{Appointment.name}</td>
-                                        <td>{Appointment.contact}</td>
-                                        <td>{Appointment.nic}</td>
-                                        <td>{Appointment.dogid}</td>
-                                        <td>{Appointment.fee}</td>
-                                        <td>{Appointment.date}</td>
-                                        <td>{Appointment.time}</td>
-                                        <td>{Appointment.reason}</td>
+                                    <tr key={RescuedDogs._id}>
+                                        <td>{RescuedDogs.registerdDate}</td>
+                                        <td>{RescuedDogs.dogName}</td>
+                                        <td>{RescuedDogs.dogColour}</td>
+                                        <td>{RescuedDogs.age}</td>
+                                        <td>{RescuedDogs.gender}</td>
+                                        <td>{RescuedDogs.perspectivePetParents}</td>
+                                        <td>{RescuedDogs.contactNo}</td>
+                                        <td>{RescuedDogs.adoptDate}</td>
+                                        <td><button style={{ color: state === "adopted" ? "#F00" : "#00F" }}>{RescuedDogs.status}</button></td>
+                                        
                                         <td>
-                                            <Button variant="outline-success" onClick={() => handleShow(Appointment._id, Appointment.from, Appointment.to, Appointment.time)} ><FaPencilAlt/></Button>
+                                         <Button variant="outline-success" onClick={() => handleShow(RescuedDogs._id)} ><FaPencilAlt/></Button>
+                                      
+                                        </td>
+                                        <td>
+                                        <Button variant="outline-primary" onClick={() => adoptPuppy(RescuedDogs._id)} >Adopt Puppy </Button>
                                         </td>
 
                                         <td>
-                                            <Button variant="outline-danger" onClick={() => onDelete(Appointment._id)}><FaTrashAlt/></Button>
+                                            <Button variant="outline-danger" onClick={() => onDelete(RescuedDogs._id)}><FaTrashAlt/></Button>
 
                                         </td>
                                     </tr>
@@ -137,7 +148,7 @@ function Viewappointment(props) {
     );
 
 }
-export default Viewappointment;
+export default ViewRescuedDogs;
 
 
 
