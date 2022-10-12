@@ -1,50 +1,42 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
-const appoinmentSchema = new Schema({
+const AppoinmentSchema = new Schema({
+    
+    name : {
+        type : String,
+        required: true
 
-      name: {
-            type: String,
-            require: true
-      },
+    },
 
-      mobileNumber: {
-        type: number,
-        require: true
-      },
-
-      nic: {
-            type: String,
-            require: true
-      },
-
-      dogID: {
-            type: String,
-            require: true
-      },
-
-      fee: {
-            type: String,
-            require: true
-      },
-
-      date: {
+    contact : {
         type: String,
-        require: true
-      },
-
-      time: {
+    },
+    nic : {
         type: String,
-        require: true
-      },
+    },
 
-      reason: {
+    dogid : {
         type: String,
-        require: true
-     },
-
+    },
+    
+    fee : {
+        type: String,
+    },
+    date : {
+        type: String,
+    },
+    time : {
+        type: String,
+    },
+    reason : {
+        type: String,
+    }
+    
 })
 
-const Appoinment = mongoose.model("Appoinment", appoinmentSchema);
+const Appoinment = mongoose.model("Appoinment",AppoinmentSchema);
 
 module.exports = Appoinment;
+
