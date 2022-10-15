@@ -6,6 +6,10 @@ export const getMedicine = async () => {
     return await http.get(serviceUrl);
 }
 
+export const getMedicineById = async (id) => {
+  return await http.get(`${serviceUrl}${id}`);
+}
+
 export const createMedicine = async (medicine) => {
     return await http.post(serviceUrl, medicine)
     .then(() => {

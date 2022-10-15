@@ -10,6 +10,7 @@ import Addappointment from "./screen/Addappointment";
 import AddUser from "./screen/AddUser";
 import Login from "./screen/Login";
 import Viewappointment from "./screen/Viewappointment";
+import { UpdateMedicinePage } from './pages/medicinePages/updateMedicinePage';
 
 function App() {
   return (
@@ -18,10 +19,10 @@ function App() {
       <Routes>
         <Route path="/medicine" element={<MedicinePage />} />
         <Route path="/medicines" element={<MedicineDetailsPage />} />
+        <Route path="/updatemedicine/:id" element={<UpdateMedicinePage />} />
         <Route path="/addDog" element={<AddDog />} />
         <Route path="/addHealthDetails/:id" element={<AddHealthDetails />} />
         <Route path="/viewDogs" element={<ViewAll />} />
-
         <Route exact path="/addappointment" element={<Addappointment />} />
         <Route exact path="/adduser" element={<AddUser/>} />
         <Route exact path="/viewappointment" element={<Viewappointment/>} />

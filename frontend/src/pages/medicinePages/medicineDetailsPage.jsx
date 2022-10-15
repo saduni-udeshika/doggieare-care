@@ -6,6 +6,7 @@ import { BsSearch } from "react-icons/bs";
 import Form from "react-bootstrap/Form";
 import {MdEdit, MdDelete} from "react-icons/md";
 import Button from "react-bootstrap/esm/Button";
+import { Link } from "react-router-dom";
 
 export const MedicineDetailsPage = () => {
   const space2 = (
@@ -25,7 +26,6 @@ export const MedicineDetailsPage = () => {
   }, []);
 
     //delete
-      //delete
   const deleteMed = async (id) => {
     await deleteMedicine(id);
     getMedicines();
@@ -33,6 +33,7 @@ export const MedicineDetailsPage = () => {
 
   // search bar
   const handleChange = (event) => {};
+
   return (
     <div
       style={{
@@ -108,7 +109,9 @@ export const MedicineDetailsPage = () => {
                       deleteMed(medicine._id);
                     }}
                   />
+                <Link to={`/updatemedicine/${medicine._id}`}>
                   <MdEdit style={{color: "green", float: "right", margin: "4px" }}/>
+                </Link>
                   <br />
                   <p style={{ color: "#A4DE02" }}>{medicine.medicineName}</p>
                   <br />
