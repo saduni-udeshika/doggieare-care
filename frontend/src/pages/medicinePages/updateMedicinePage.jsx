@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
-import { getMedicineById} from "../../services/medicineService";
+import { getMedicineById, updateMedicine} from "../../services/medicineService";
 
 export const UpdateMedicinePage = () => {
   const space2 = (
@@ -14,17 +15,17 @@ export const UpdateMedicinePage = () => {
   );
   //retrieve relevent data form relavent fields
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  const [medicineName, setMedicineName] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [expDate, setExpDate] = useState('');
-  const [category, setCategory] = useState('');
-  const [description, setDescription] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
+  const [medicineName, setMedicineName] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [expDate, setExpDate] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
   
   const getMedicine = async () => {
     const medicineResponse = await getMedicineById(id);
-    // setMedicines(medicineResponse.data);
     console.log(medicineResponse.data)
     setMedicineName(medicineResponse.data.medicine.medicineName)
     setQuantity(medicineResponse.data.medicine.quantity)
@@ -33,7 +34,7 @@ export const UpdateMedicinePage = () => {
     setDescription(medicineResponse.data.medicine.description)
     setImgUrl(medicineResponse.data.medicine.imgUrl)
   };
-
+  
   useEffect(() => {
     getMedicine();
   }, []);
@@ -41,7 +42,7 @@ export const UpdateMedicinePage = () => {
     //update data
     const updateMedicineDetails = async (e) => {
       e.preventDefault();
-      const updateMedicine = {
+      const medicine = {
         medicineName,
         quantity,
         expDate,
@@ -49,7 +50,8 @@ export const UpdateMedicinePage = () => {
         description,
         imgUrl,
       };
-       await updateMedicine()
+      await updateMedicine(id, medicine)
+      navigate("/medicines")
     }
 
   return (
@@ -92,7 +94,8 @@ export const UpdateMedicinePage = () => {
               color: "#F62681",
             }}
             name="medicineName"
-            
+            value={medicineName}
+            onChange={(e) => {setMedicineName(e.target.value)}}
           />
           <Form.Label>QTY:</Form.Label>
           <Form.Control
@@ -103,17 +106,19 @@ export const UpdateMedicinePage = () => {
               color: "#F62681",
             }}
             name="quantity"
-            onChange={(e) => {setMedicineName(e.target.value)}}
+            value={quantity}
+            onChange={(e) => {setQuantity(e.target.value)}}
           />
           <Form.Label>Expiry Date:</Form.Label>
           <Form.Control
-            type="date"
+            // type="date"
             placeholder="Expiry Date"
             style={{
               backgroundColor: "#010020",
               color: "#F62681",
             }}
             name="expDate"
+            value={expDate}
             onChange={(e) => {setExpDate(e.target.value)}}
           />
           <Form.Label>Category:</Form.Label>
@@ -125,6 +130,7 @@ export const UpdateMedicinePage = () => {
               color: "#F62681",
             }}
             name="category"
+            value={category}
             onChange={(e) => {setCategory(e.target.value)}}
           >
             <option>Tablet</option>
@@ -139,6 +145,7 @@ export const UpdateMedicinePage = () => {
               color: "#F62681",
             }}
             name="description"
+            value={description}
             onChange={(e) => {setDescription(e.target.value)}}
           />
           <br />
@@ -150,6 +157,7 @@ export const UpdateMedicinePage = () => {
               color: "#F62681",
             }}
             name="imgUrl"
+            value={imgUrl}
             onChange={(e) => {setImgUrl(e.target.value)}}
           />
         </Form.Group>

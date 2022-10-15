@@ -26,5 +26,5 @@ export const deleteMedicine = async (id) => {
 }
 
 export const updateMedicine = async (id, medicine) => {
-  return await http.put(serviceUrl, { id, medicine });
+  return await http.put(`${serviceUrl}${ id }`, medicine);
 }
