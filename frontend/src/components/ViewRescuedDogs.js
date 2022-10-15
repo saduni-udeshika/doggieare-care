@@ -3,6 +3,7 @@ import { Table, Button,Card } from "react-bootstrap";
 import axios from "axios";
 import { FaPencilAlt, FaTrashAlt,FaLock } from "react-icons/fa";
 import { Fragment } from "react";
+import jsPDF from 'jspdf'
 
 function ViewRescuedDogs(props) {
     const [rescuedDogs, setRescuedDogs] = useState([]);
@@ -14,7 +15,7 @@ function ViewRescuedDogs(props) {
 
         //get funtion
         function geRescuedDogs() {
-            axios.get("http://localhost:5000/createRescuedDog/").then((res) => {
+            axios.get("http://localhost:8000/createRescuedDog/").then((res) => {
                 setRescuedDogs(res.data);
             }).catch((err) => {
                 alert(err.message);
@@ -23,17 +24,72 @@ function ViewRescuedDogs(props) {
         geRescuedDogs();
     }, [])
 
-    //delete funtion
-    function onDelete(_id){
-        console.log(_id);
-        axios.delete("http://localhost:5000/createRescuedDog/"+_id ).then((res) =>{
-           alert('Deleted Successfully'); 
-           window.location.reload();
-       }).catch((err) => {
-           alert(err.message);
-       })
-      }
+    const onDelete = (_id) =>{
+        axios.delete(`http://localhost:8000/createRescuedDog/delete/${_id}`);
+    }
 
+   
+
+    const createPDF = (_id,dogName,dogColour,weight,age,gender,perspectivePetParents,contactNo,adoptDate)=>{
+        console.log(_id);
+        console.log(dogName);
+        console.log(dogColour);
+        console.log(weight);
+        console.log(age);
+        console.log(gender);
+        console.log(perspectivePetParents);
+        console.log(contactNo);
+        console.log(adoptDate);
+
+        const unit = "pt";
+        const size = "A4";
+        const orientation = "landscape";
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+        const title = `**** DOGGIE CARE PUPPY'S REPORT CARD ****    (Dog ID- ${_id})`;
+        const doggieName = `Puppy's Name: ${dogName}`;
+        const doggieColour = `Colour: ${dogColour}`;
+        const dogWeight = `Weight: ${weight}Kg`;
+        const dogAge = `Age: ${age}`;
+        const doggender = `Gender: ${gender}`;
+        const owner = `New Owner: Mr/Ms.${perspectivePetParents}`;
+        const ownerContactNo = `Contact Number: ${contactNo}`;
+        const dogadoptDate = `Adopt Date: ${adoptDate}`;
+   
+      
+        const image2 = "https://res.cloudinary.com/dorcq99nr/image/upload/v1665646657/DoggieCare/black_sgno4i.jpg"
+        const success = `Thank you, Mr/Ms. ${perspectivePetParents} on taking home a puppy. We are committed to providing you with quality services.` 
+      //  const second = `Description about clinic` ;
+      //    const third  = `We are committed to providing you with quality services. Thank you`; 
+      //  const issuedate =`Report Issue Date: ${adoptDate}`;
+        const left = 20;
+        const top = 8;
+        
+        const lefts = 450;
+        const tops = 200;
+        const imgWidths = 350;
+        const imgHeights = 250;
+        doc.setFontSize(15);
+        doc.text(200,40 ,title);
+        doc.text(60,200, doggieName );
+        doc.text(60,240, doggieColour);
+        doc.text(60, 280,dogWeight);
+        doc.text(60, 320, dogAge);
+        doc.text(60, 360, doggender);
+        doc.text(60, 400,owner);
+        doc.text(60, 440,ownerContactNo);
+        doc.text(60, 480,dogadoptDate);
+        
+       
+        doc.addImage(image2, 'PNG' , lefts, tops, imgWidths, imgHeights);
+        
+      //  doc.text(60,500,issuedate);
+        doc.text(60, 100, success);
+      //  doc.text(80, 120, second);
+      //  doc.text(80, 140, third);
+        doc.save(`${dogName}'s ReportCard.pdf`);
+     
+    }
 
   //update rescued dog details
   function handleShow(_id){}
@@ -75,7 +131,7 @@ function ViewRescuedDogs(props) {
                         <tr>
 
                             
-                            <th>Registerd Date</th>
+                        <th>Registerd Date</th>
                             <th>Dog Name</th>
                             <th>Dog Colour</th>
                             <th>Age</th>
@@ -84,8 +140,9 @@ function ViewRescuedDogs(props) {
                             <th>Contact No</th>
                             <th>Adopt Date</th>
                             <th>Status</th>
+                            <th>Download Report Card</th>
                             <th>Edit</th>
-                            <th><Button>Adopt Puppy</Button></th>
+                            <th>Adopt Puppy</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -112,13 +169,16 @@ function ViewRescuedDogs(props) {
                                         <td>{RescuedDogs.contactNo}</td>
                                         <td>{RescuedDogs.adoptDate}</td>
                                         <td><button style={{ color: state === "adopted" ? "#F00" : "#00F" }}>{RescuedDogs.status}</button></td>
-                                        
+                                        <td> <Button className="generateDogReportCardPdF" onClick={()=> createPDF(RescuedDogs._id,RescuedDogs.dogName,RescuedDogs.dogColour,RescuedDogs.weight,RescuedDogs.age,RescuedDogs.gender,RescuedDogs.perspectivePetParents, RescuedDogs.contactNo, RescuedDogs.adoptDate )}>Report Card</Button></td>
                                         <td>
+                                       
                                          <Button variant="outline-success" onClick={() => handleShow(RescuedDogs._id)} ><FaPencilAlt/></Button>
-                                      
+                                        
                                         </td>
                                         <td>
-                                        <Button variant="outline-primary" onClick={() => adoptPuppy(RescuedDogs._id)} >Adopt Puppy </Button>
+                                       
+                                       <Button variant="outline-primary"  ><a href="/adoption"> Adopt Puppy </a> </Button>
+                                       
                                         </td>
 
                                         <td>

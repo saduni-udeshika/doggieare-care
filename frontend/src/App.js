@@ -13,6 +13,8 @@ import Viewappointment from "./screen/Viewappointment";
 import ViewRescuedDogs from "./components/ViewRescuedDogs";
 import Adoption from "./components/Adoption";
 import {DogsList} from "./pages/dogsPages/dogsList";
+import RescuedDogRegistration from "./components/RescuedDogRegistration";
+import MultiStepForm from "./components/RegisterRescuedDogs/MultiStepForm";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/viewstrayPuppies" element={<ViewRescuedDogs/>} />
         <Route exact path="/adoption" element={<Adoption/>} />
+        <Route exact path="/rescuedDogRegistration" element ={<RescuedDogRegistration/>}/>
+        <Route exact path ="/registerResDog" element={<MultiStepForm/>} />
       </Routes>
     </BrowserRouter>
     </div>
