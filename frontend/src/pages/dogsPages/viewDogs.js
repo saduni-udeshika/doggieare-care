@@ -104,7 +104,7 @@ function ViewAll(props) {
                                        
                                         <td>
                                         <Link
-                      to={`/AddHealth/${Dog._id}`}
+                      to={`/addHealthDetails/${Dog._id}`}
                       className="btn btn-sm expenseButton"
                     > <FaPencilAlt/>
                     </Link> 

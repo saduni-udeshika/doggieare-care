@@ -3,13 +3,10 @@ const Schema = mongoose.Schema;
 
 const rescuedDogSchema = new Schema({
 
-    
-  dogID: {
-    type: String,
-  },
-
   dogName: {
      type: String,
+     unique: true,
+     require: true
   },
 
   registerdDate:{
@@ -33,7 +30,7 @@ const rescuedDogSchema = new Schema({
 
   description:{
     type: String,
-    require: true
+   
   },
 
   
@@ -46,11 +43,11 @@ const rescuedDogSchema = new Schema({
     type: String,
   },
 
-  Gender: {
+  gender: {
     type: String,
   },
 
-  Age: {
+  age: {
     type: String,
   },
 
@@ -106,9 +103,15 @@ const rescuedDogSchema = new Schema({
    adoptDate:{
     type: Date,
     require: true
+   },
+
+   status:{
+    type: String
    }
 })
 
-const RescuedDog = mongoose.model("RescuedDog", rescuedDogSchema);
+
+
+const RescuedDog= mongoose.model("RescuedDog", rescuedDogSchema);
 
 module.exports = RescuedDog;
