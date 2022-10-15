@@ -16,3 +16,11 @@ export const createMedicine = async (medicine) => {
         alert(err);
       });
 }
+
+export const deleteMedicine = async (id) => {
+  return await http.delete(`${serviceUrl}${id}`);
+}
+
+export const updateMedicine = async (id, medicine) => {
+  return await http.put(serviceUrl, { id, medicine });
+}
