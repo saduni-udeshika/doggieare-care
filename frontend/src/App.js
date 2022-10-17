@@ -15,6 +15,9 @@ import Adoption from "./components/Adoption";
 import {DogsList} from "./pages/dogsPages/dogsList";
 import RescuedDogRegistration from "./components/RescuedDogRegistration";
 import MultiStepForm from "./components/RegisterRescuedDogs/MultiStepForm";
+import SideBar from './screen/SideBar';
+import Home from './screen/Home';
+import EditAppointment from './screen/EditAppointment';
 
 function App() {
   return (
@@ -31,7 +34,11 @@ function App() {
         <Route exact path="/addappointment" element={<Addappointment />} />
         <Route exact path="/adduser" element={<AddUser/>} />
         <Route exact path="/viewappointment" element={<Viewappointment/>} />
+        <Route exact path="/editappointment" element={<EditAppointment/>} />
         <Route exact path="/login" element={<Login/>} />
+        <Route exact path ="/sidebar" element={<SideBar/>} />
+        <Route exact path ="/" element={<Home/>} />
+
         <Route exact path="/viewstrayPuppies" element={<ViewRescuedDogs/>} />
         <Route exact path="/adoption" element={<Adoption/>} />
         <Route exact path="/rescuedDogRegistration" element ={<RescuedDogRegistration/>}/>

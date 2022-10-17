@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let Appointment = require("../models/Appoinment");
+let Appointment = require("../models/Appointments");
 
 router.route("/").post((req,res)=>{
     const contact = req.body.contact;
