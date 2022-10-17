@@ -4,7 +4,7 @@ import axios from "axios";
 import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
 
-function EditAppointment() {
+function EditAppointment(props) {
     const [appointment, setappointment] = useState([]);
     const [search, setSearch] = useState("");
     const space2 = <Fragment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Fragment>
@@ -25,6 +25,9 @@ function EditAppointment() {
        
         //get funtion
         function getappointment() {
+
+          //params issue*  const _id = props.match.params.id;
+            console.log(_id);
             axios.get("http://localhost:8000/appointment/"+_id).then((res) => {
                 setappointment(res.data);
                 set_id(res._id);
@@ -59,8 +62,8 @@ function EditAppointment() {
           nic, dogid, fee, date, time, reason
         }
     
-        axios.post("http://localhost:8000/appointment/", newAppointment).then(() => {
-          ("Appointment added")
+        axios.post("http://localhost:8000/appointment/"+_id, newAppointment).then(() => {
+          ("Appointment Edited")
           setName('');
           setContact('');
           setNIC('');
@@ -69,7 +72,7 @@ function EditAppointment() {
           setdate('');
           settime('');
           setreason('');
-          alert("Appointment added added");
+          alert("Appointment Edited");
           window.location = `/viewappointment`;
     
         }).catch((err) => {
