@@ -42,6 +42,25 @@ module.exports.createMedicine = async (req, res, _next) => {
       })
   }
 
+  module.exports.serchMedicine = async(req, res) => {
+    let result = await MedicineModel.find({
+      "$or":[
+        {
+          medicineName: {$regex: req.params.key}
+        },
+        {
+          category: {$regex: req.params.key}
+        }
+      ]
+    })
+    .then((medicine) => {
+        res.status(200).send({status: "Medicine filterd", medicine});
+    }).catch((err) => {
+        console.log(err.message);
+        res.status(500).send({status: "Error with get medicine",error: err.message});
+    })
+}
+
   module.exports.updateMedicine = async (req, res, _next) => {
       let id = req.params.id;
       const {medicineName, quantity, expDate, category, description, imgUrl} =req.body;
