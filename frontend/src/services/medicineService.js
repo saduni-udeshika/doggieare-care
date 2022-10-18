@@ -10,6 +10,10 @@ export const getMedicineById = async (id) => {
   return await http.get(`${serviceUrl}${id}`);
 }
 
+export const searchMedicine =  async (key) => {
+  return await http.get(`${serviceUrl}search/${key}`)
+}
+
 export const createMedicine = async (medicine) => {
     return await http.post(serviceUrl, medicine)
     .then(() => {

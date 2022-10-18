@@ -42,7 +42,7 @@ module.exports.createMedicine = async (req, res, _next) => {
       })
   }
 
-  module.exports.serchMedicine = async(req, res) => {
+  module.exports.searchMedicine = async(req, res) => {
     let result = await MedicineModel.find({
       "$or":[
         {
@@ -53,12 +53,7 @@ module.exports.createMedicine = async (req, res, _next) => {
         }
       ]
     })
-    .then((medicine) => {
-        res.status(200).send({status: "Medicine filterd", medicine});
-    }).catch((err) => {
-        console.log(err.message);
-        res.status(500).send({status: "Error with get medicine",error: err.message});
-    })
+    res.send(result);
 }
 
   module.exports.updateMedicine = async (req, res, _next) => {
