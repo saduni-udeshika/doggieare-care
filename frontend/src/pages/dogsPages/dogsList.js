@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { dogsLists } from "../../services/dogService";
+import { dogsList } from "../../services/dogService";
 import { Fragment } from "react";
+import axios from "axios";
+
 import { FaLock } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import Form from "react-bootstrap/Form";
 import {MdEdit, MdDelete} from "react-icons/md";
 import Button from "react-bootstrap/esm/Button";
+import { Link } from "react-router-dom";
 
-export const DogsList = () => {
+export const DogList = () => {
   const space2 = (
     <Fragment>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -15,17 +18,35 @@ export const DogsList = () => {
   );
   const [dogs, setDogs] = useState([]);
 
-  const getDogs = async () => {
-    const dogsList = await getDogs();
-    setDogs(dogsList.data);
+  const dogsLists = async () => {
+    const dogResponse = await dogsList();
+    setDogs(dogResponse.data);
   };
 
   useEffect(() => {
-    getDogs();
+    dogsLists();
   }, []);
+
+  //   //delete
+  // const deleteDoggy = async (id) => {
+  //   await deleteDog(id);
+  //   dogsLists();
+  // };
+  //delete funtion
+    async function deleteDog(id){        
+        await axios.delete(`http://localhost:8000/dog/delete/${id}`).then(() => {
+            alert("Dog deleted successfully");
+            window.location = `/dogs`;
+
+          
+        }).catch((error) => {
+            alert(`Failed to delete \n${error.message}`)
+        }) 
+    } 
 
   // search bar
   const handleChange = (event) => {};
+
   return (
     <div
       style={{
@@ -78,31 +99,42 @@ export const DogsList = () => {
                 width: "30%",
                 marginLeft: "120px",
               }}
-              name="dogName"
+              name="dogID"
               onChange={(e) => handleChange(e)}
             />
             <BsSearch style={{ margin: "10px" }} />
             {space2}{space2}{space2}{space2}{space2}
-          
+        
           </div>
           <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }}>
             {dogs.map((dog) => (
-              <div key={dog._id} className="medicine-card">
-                <div>
-                  <img src={dog.imgUrl} alt="medicine" />
+              <div key={dog._id}>
+                <div className="medicine-card">
+                  <img src={dog.imgUrl} alt="dog" />
                   <br />
-                  <MdDelete style={{color: "red", float: "right", margin: "4px" }}/>
+                  <MdDelete style={{color: "red", float: "right", margin: "4px" }}
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you wish to delete this record?"
+                        )
+                      )
+                      deleteDog(dog._id);
+                    }}
+                  />
+                <Link to={`/updatdoggy/${dog._id}`}>
                   <MdEdit style={{color: "green", float: "right", margin: "4px" }}/>
+                </Link>
                   <br />
-                  <p style={{ color: "#A4DE02" }}>{dog.dogName}</p>
+                  <p style={{ color: "#A4DE02" }}>{dog.dogID}</p>
                   <br />
-                  <p>{dog.dogID}</p>
+                  <p>{dog.dogName}</p>
                   <br />
                   <p>{dog.ownerName}</p>
                   <br />
                   <p>{dog.breed}</p>
                   <br />
-               
+                  <p className="description">{dog.sex}</p>
                 </div>
               </div>
             ))}

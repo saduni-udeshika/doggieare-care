@@ -13,7 +13,8 @@ import Viewappointment from "./screen/Viewappointment";
 import { UpdateMedicinePage } from './pages/medicinePages/updateMedicinePage';
 import ViewRescuedDogs from "./components/ViewRescuedDogs";
 import Adoption from "./components/Adoption";
-import {DogsList} from "./pages/dogsPages/dogsList";
+import {DogList} from "./pages/dogsPages/dogsList";
+import {UpdateDog} from "./pages/dogsPages/updateDog"
 import RescuedDogRegistration from "./components/RescuedDogRegistration";
 import MultiStepForm from "./components/RegisterRescuedDogs/MultiStepForm";
 
@@ -28,7 +29,7 @@ function App() {
         <Route path="/addDog" element={<AddDog />} />
         <Route path="/addHealth/:id" element={<AddHealthDetails />} />
         <Route path="/viewDogs" element={<ViewAll />} />
-        <Route path="/dogsList" element={<DogsList />} />
+        <Route path="/dogs" element={<DogList />} />
         <Route exact path="/addappointment" element={<Addappointment />} />
         <Route exact path="/adduser" element={<AddUser/>} />
         <Route exact path="/viewappointment" element={<Viewappointment/>} />
@@ -37,6 +38,8 @@ function App() {
         <Route exact path="/adoption" element={<Adoption/>} />
         <Route exact path="/rescuedDogRegistration" element ={<RescuedDogRegistration/>}/>
         <Route exact path ="/registerResDog" element={<MultiStepForm/>} />
+        <Route exact path ="/updatdoggy/:id" element={<UpdateDog/>} />
+
       </Routes>
     </BrowserRouter>
     </div>

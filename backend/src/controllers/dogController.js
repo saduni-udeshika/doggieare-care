@@ -60,10 +60,10 @@ exports.deleteDog = async (req, res) => {
  exports.updateDog= async (req, res) => { 
     //fetch id from url
     let dogid = req.params.id;
-    const {dogName, ownerName,address,dob,breed,sex,image,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor} = req.body;
+    const {dogID,dogName, ownerName,address,dob,breed,sex,image,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor} = req.body;
   
     const updateDog = {
-        dogName,ownerName,address,dob,breed,sex,image,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor
+        dogID,dogName,ownerName,address,dob,breed,sex,image,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor
     }
   
   
