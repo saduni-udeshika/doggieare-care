@@ -6,6 +6,10 @@ export const getMedicine = async () => {
     return await http.get(serviceUrl);
 }
 
+export const getMedicineById = async (id) => {
+  return await http.get(`${serviceUrl}${id}`);
+}
+
 export const createMedicine = async (medicine) => {
     return await http.post(serviceUrl, medicine)
     .then(() => {
@@ -15,4 +19,12 @@ export const createMedicine = async (medicine) => {
       .catch((err) => {
         alert(err);
       });
+}
+
+export const deleteMedicine = async (id) => {
+  return await http.delete(`${serviceUrl}${id}`);
+}
+
+export const updateMedicine = async (id, medicine) => {
+  return await http.put(`${serviceUrl}${ id }`, medicine);
 }

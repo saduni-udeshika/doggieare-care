@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getMedicine } from "../../services/medicineService";
+import { getMedicine, deleteMedicine } from "../../services/medicineService";
 import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import Form from "react-bootstrap/Form";
 import {MdEdit, MdDelete} from "react-icons/md";
 import Button from "react-bootstrap/esm/Button";
+import { Link } from "react-router-dom";
 
 export const MedicineDetailsPage = () => {
   const space2 = (
@@ -24,8 +25,15 @@ export const MedicineDetailsPage = () => {
     getMedicines();
   }, []);
 
+    //delete
+  const deleteMed = async (id) => {
+    await deleteMedicine(id);
+    getMedicines();
+  };
+
   // search bar
   const handleChange = (event) => {};
+
   return (
     <div
       style={{
@@ -87,12 +95,23 @@ export const MedicineDetailsPage = () => {
           </div>
           <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }}>
             {medicines.map((medicine) => (
-              <div key={medicine._id} className="medicine-card">
-                <div>
+              <div key={medicine._id}>
+                <div className="medicine-card">
                   <img src={medicine.imgUrl} alt="medicine" />
                   <br />
-                  <MdDelete style={{color: "red", float: "right", margin: "4px" }}/>
+                  <MdDelete style={{color: "red", float: "right", margin: "4px" }}
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you wish to delete this record?"
+                        )
+                      )
+                      deleteMed(medicine._id);
+                    }}
+                  />
+                <Link to={`/updatemedicine/${medicine._id}`}>
                   <MdEdit style={{color: "green", float: "right", margin: "4px" }}/>
+                </Link>
                   <br />
                   <p style={{ color: "#A4DE02" }}>{medicine.medicineName}</p>
                   <br />
