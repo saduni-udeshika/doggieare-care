@@ -15,6 +15,7 @@ import ViewRescuedDogs from "./components/ViewRescuedDogs";
 import Adoption from "./components/Adoption";
 import {DogList} from "./pages/dogsPages/dogsList";
 import {UpdateDog} from "./pages/dogsPages/updateDog"
+import GeneratePrescriptions from "./pages/dogsPages/generatePrescriptions"
 import RescuedDogRegistration from "./components/RescuedDogRegistration";
 import MultiStepForm from "./components/RegisterRescuedDogs/MultiStepForm";
 
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/rescuedDogRegistration" element ={<RescuedDogRegistration/>}/>
         <Route exact path ="/registerResDog" element={<MultiStepForm/>} />
         <Route exact path ="/updatdoggy/:id" element={<UpdateDog/>} />
+        <Route exact path ="/prescriptions" element={<GeneratePrescriptions/>} />
 
       </Routes>
     </BrowserRouter>

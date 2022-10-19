@@ -220,7 +220,144 @@ export const UpdateDog = () => {
 <div style={{ paddingLeft: "10vh" }}>
       <h6 style={{ color: "#A4DE02" }}>Update Health Information</h6>
     </div>
-    
+    <Row>
+                    <Col>
+                      <br />
+                      <div style={{ paddingLeft: '10vh' }}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Weight :</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Weight"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="weight"
+            value={weight}
+            onChange={(e) => {setWeight(e.target.value)}}
+          />
+          <Form.Label>Blood Group:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Blood Group"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="bloodGroup"
+            value={bloodGroup}
+            onChange={(e) => {setBloodGroup(e.target.value)}}
+          />
+          <Form.Label>Disease:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Disease"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="disease"
+            value={disease}
+            onChange={(e) => {setDisease(e.target.value)}}
+          />
+           <Form.Label>Last Visited Date:</Form.Label>
+          <Form.Control
+            type="date"
+            placeholder="Last Visited Date"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="lastDate"
+            value={lastDate}
+            onChange={(e) => {setLastDate(e.target.value)}}
+          />
+          {/* <Form.Label>Address:</Form.Label>
+          <Form.Select
+            type="text"
+            placeholder="Address"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="category"
+            value={address}
+            onChange={(e) => {setAddress(e.target.value)}}
+          >
+            <option>Tablet</option>
+            <option>Vaccine</option>
+          </Form.Select> */}
+          
+
+        </Form.Group>
+        </div>
+
+<br />
+</Col>
+
+<Col>
+                      <br />
+                      <div>
+                      <Form.Label>Next Appointment Date:</Form.Label>
+                      <Form.Control
+            type="date"
+            placeholder="Next Appointment Date"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="nextDate"
+            value={nextDate}
+            onChange={(e) => {setNextDate(e.target.value)}}
+          />
+          <Form.Label>Medicines :</Form.Label>
+                      <Form.Control
+            type="text"
+            placeholder="Medicines"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="medicine"
+            value={medicine}
+            onChange={(e) => {setMedicine(e.target.value)}}
+          />
+          <Form.Label>Lab Tests Done:</Form.Label>
+                      <Form.Control
+            type="text"
+            placeholder="Lab Tests Done"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="labTests"
+            value={labTests}
+            onChange={(e) => {setLabTests(e.target.value)}}
+          />
+           <Form.Label>Veterinary Surgeon:</Form.Label>
+          <Form.Select
+            type="text"
+            placeholder="Veterinary Surgeon"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="doctor"
+            value={doctor}
+            onChange={(e) => {setDoctor(e.target.value)}}
+          >
+            <option>Dr. John Doe</option>
+            <option>Dr. Melissa Sulivvain</option>
+          </Form.Select> 
+          
+                                        </div>
+
+<br />
+</Col>
+                        
+
+</Row>
         <div style={{ paddingLeft: "50%" }}>
           <Button
             type="submit"
