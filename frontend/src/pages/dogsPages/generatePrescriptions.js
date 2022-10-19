@@ -45,10 +45,10 @@ function GeneratePrescriptions(props) {
 
         const unit = "pt";
         const size = "A4";
-        const orientation = "portrait";
+        const orientation = "landscape";
         const marginLeft = 40;
         const doc = new jsPDF(orientation, unit, size);
-        const title = `**** DOGGIE CARE HEALTH REPORT ****    (Dog ID- ${dogID})`;
+        const title = `**** DOGGIE CARE HEALTH REPORT ****    (Dog ID : ${dogID})`;
         const name = `Dog's Name: ${dogName}`;
         const gender = `Gender: ${sex}`;
         const birth = `Date Of Birth: ${dob}`;
@@ -179,12 +179,8 @@ function GeneratePrescriptions(props) {
                                         <td>{Prescriptions.labTests}</td>
                                         <td>{Prescriptions.doctor}</td>
 
-                                        <td> <Button className="generateDogReportCardPdF" onClick={()=> createPDF(Prescriptions._id,Prescriptions.dogID,Prescriptions.dogName,Prescriptions.sex,Prescriptions.dob,Prescriptions.weight,Prescriptions.bloodGroup,Prescriptions.disease, Prescriptions.lastDate, Prescriptions.nextDate, Prescriptions.medicine, Prescriptions.labTests, Prescriptions.doctor )}><FaFilePdf/></Button></td>
-                                        <td>
-                                       
-                               
-                                        
-                                        </td>
+                                        <td> <Button variant="outline-danger" onClick={()=> createPDF(Prescriptions._id,Prescriptions.dogID,Prescriptions.dogName,Prescriptions.sex,Prescriptions.dob,Prescriptions.weight,Prescriptions.bloodGroup,Prescriptions.disease, Prescriptions.lastDate, Prescriptions.nextDate, Prescriptions.medicine, Prescriptions.labTests, Prescriptions.doctor )}><FaFilePdf/></Button></td>
+                                      
                   
                                     </tr>
 
