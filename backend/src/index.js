@@ -7,7 +7,7 @@ const dogRouter = require('./routes/dogRouter')
 const rescuedDogRouter =require("./routes/rescuedDogRoute.js"); //import  rescuedDogRoute
 const appointmentRouter = require("./routes/Appointment-routes.js");
 const userRouter = require("./routes/User-routes");
-
+const salesRouter = require("./routes/salesRoute.js")
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.use('/dog' , dogRouter)
 app.use("/createRescuedDog",rescuedDogRouter); //create  rescuedDogRoute 
 app.use("/appointment",appointmentRouter);
 app.use("/user",userRouter);
+app.use("/sales", salesRouter)
 
 const initialize = async () => {
   try {
