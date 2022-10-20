@@ -7,7 +7,6 @@ import { FaLock } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import Form from "react-bootstrap/Form";
 import {MdEdit, MdDelete} from "react-icons/md";
-import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
 
 export const DogList = () => {
@@ -122,7 +121,7 @@ export const DogList = () => {
                       deleteDog(dog._id);
                     }}
                   />
-                <Link to={`/updatdoggy/${dog._id}`}>
+                <Link to={`/UpdateDog/${dog._id}`}>
                   <MdEdit style={{color: "green", float: "right", margin: "4px" }}/>
                 </Link>
                   <br />

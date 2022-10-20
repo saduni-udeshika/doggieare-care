@@ -5,11 +5,22 @@ import { FaPencilAlt, FaTrashAlt,FaLock ,FaFilePdf,FaHeartbeat} from "react-icon
 import {Link} from 'react-router-dom'
 import { Fragment } from "react";
 
-function ViewAll(props) {
+function ViewAll() {
     const [dog, setDog] = useState([]);
     const [search, setSearch] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [posts, setPosts] = useState([]);
     const space2 = <Fragment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Fragment>
 
+    useEffect(() => {
+        const loadPosts = async () => {
+          setLoading(true);
+          const response = await axios.get(`http://localhost:8000/dog/`);
+          setPosts(response.data);
+          setLoading(false);
+        };
+        loadPosts();
+      }, []);
     useEffect(() => {
 
         //get funtion
@@ -21,7 +32,7 @@ function ViewAll(props) {
             })
         }
         getDog();
-    }, [])
+    }, [dog])
 
     //delete funtion
     async function deleteDog(id){        
@@ -80,7 +91,7 @@ function ViewAll(props) {
                             <th>Prescriptions</th>
                             <th>Edit</th>
                             <th>Delete</th>
-                            <th>Report</th>
+                          
                         </tr>
                     </thead>
                     <tbody>
@@ -113,7 +124,7 @@ function ViewAll(props) {
                     </Link> </center>
                                         </td>
                                         <td>
-                                            <Button variant="outline-success"><FaPencilAlt/></Button>
+                                        <Link to={`/UpdateDog/${Dog._id}`}> <Button variant="outline-success"><FaPencilAlt/></Button></Link>
 
                                         </td>
                                  
@@ -121,10 +132,7 @@ function ViewAll(props) {
                                             <Button variant="outline-danger" onClick={() => {if (window.confirm('Are you sure you want to delete this record?'))deleteDog(Dog._id)}}><FaTrashAlt/></Button>
 
                                         </td>
-                                        <td>
-                                            <Button variant="outline-danger" ><FaFilePdf/></Button>
-
-                                        </td>
+                                     
                                     </tr>
 
                                 );

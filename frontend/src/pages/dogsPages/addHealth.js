@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
 // import { Fragment } from "react";
- import { Card, Button, Row, Col, Form } from 'react-bootstrap';
+ import { Card } from 'react-bootstrap';
 
 function AddHealthDetails() {
   const space2 = <Fragment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Fragment>
-  const [dogID, setdogID] = useState("");
+  // const [dogID, setdogID] = useState("");
   const [weight, setWeight] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
   const [disease, setDisease] = useState("");
@@ -23,11 +22,11 @@ function AddHealthDetails() {
 
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`http://localhost:8000/dog/get/${id}`)
+    axios.get(`http://localhost:8000/dog/${id}`)
       .then((res) => {
         // (res.data);
         console.log(res.data.dog);
-        setdogID(res.data.dog.dogID);
+        // setdogID(res.data.dog.dogID);
         setWeight(res.data.dog.weight);
         setBloodGroup(res.data.dog.bloodGroup);
         setDisease(res.data.dog.disease);
@@ -47,7 +46,7 @@ function AddHealthDetails() {
   function sendUpdateDetails(e) {
     e.preventDefault();//prevent submit event default behaviour
     const updateDetails = {
-      dogID,
+     
       weight,
       bloodGroup,
       disease,
@@ -94,7 +93,7 @@ function AddHealthDetails() {
 
       <div className="container col-6" onSubmit={sendUpdateDetails}>
         <form className="addMarks">
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="exampleInputCategory">Dog ID</label>
             <input
               type="text"
@@ -106,7 +105,7 @@ function AddHealthDetails() {
                 setdogID(e.target.value);
               }} disabled
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <label htmlFor="exampleInputCategory">Weight (kg)</label>
             <input

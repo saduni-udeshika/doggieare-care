@@ -59,7 +59,7 @@ exports.deleteDog = async (req, res) => {
  //update 
  exports.updateDog= async (req, res) => { 
     //fetch id from url
-    let dogid = req.params.id;
+    let id = req.params.id;
     const {dogID,dogName, ownerName,address,dob,breed,sex,image,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor} = req.body;
   
     const updateDog = {
@@ -67,7 +67,7 @@ exports.deleteDog = async (req, res) => {
     }
   
   
-    const update = await dogsDetails.findByIdAndUpdate(dogid, updateDog).then(() => {
+    const update = await dogsDetails.findByIdAndUpdate(id, updateDog).then(() => {
       res.status(200).send({status: "Result updated"})
     }).catch((err) => {
         console.log(err);
@@ -90,9 +90,9 @@ exports.viewDogs= async (req, res) => {
   //view one
   exports.viewOneDog = async (req, res) => {
     
-    let dogid = req.params.id;
-    const dog = await dogsDetails.findById(dogid).then((dog) => {
-        res.status(200).send({status: "  fetched", dogid})
+    let did = req.params.id;
+    const dog = await dogsDetails.findById(did).then((dog) => {
+        res.status(200).send({status: "  fetched", did})
     }).catch(() => {
          console.log(err.message);
          res.status(500).send({status:"Error with get " , error: err.message})

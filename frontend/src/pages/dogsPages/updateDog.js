@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import {  Row, Col } from 'react-bootstrap';
 import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
-import { viewOneDog, updateDoggy} from "../../services/dogService";
+import axios from "axios";
 
-export const UpdateDog = () => {
+
+function UpdateDog  ()  {
   const space2 = (
     <Fragment>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -16,9 +16,9 @@ export const UpdateDog = () => {
   );
   //retrieve relevent data form relavent fields
   const { id } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-//   const [dogID, setdogID] = useState("");
+  const [dogID, setdogID] = useState("");
   const [dogName, setdogName] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [address, setAddress] = useState("");
@@ -35,10 +35,11 @@ export const UpdateDog = () => {
   const [labTests, setLabTests] = useState("");
   const [doctor, setDoctor] = useState("");
   
-  const dogsList = async () => {
-    const dogResponse = await viewOneDog(id);
-    console.log(dogResponse.data)
-    // setdogID(dogResponse.data.dog.dogID)
+  useEffect(() => {
+    axios.get(`http://localhost:8000/dog/${id}`)
+      .then((dogResponse) => {
+    console.log(dogResponse.data.dog)
+    setdogID(dogResponse.data.dog.dogID)
     setdogName(dogResponse.data.dog.dogName)
     setOwnerName(dogResponse.data.dog.ownerName)
     setAddress(dogResponse.data.dog.address)
@@ -55,21 +56,28 @@ export const UpdateDog = () => {
     setDoctor(dogResponse.data.dog.doctor)
 
 
-  };
-  
-  useEffect(() => {
-    dogsList();
-  }, []);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
     //update data
-    const updateDogDetails = async (e) => {
+    function sendUpdateDetails(e) {
       e.preventDefault();
       const dog = {
-        dogName,ownerName,address,dob,breed,sex,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor
+        dogID,dogName,ownerName,address,dob,breed,sex,weight,bloodGroup,disease,lastDate,nextDate,medicine,labTests,doctor
         
       };
-      await updateDoggy(id, dog)
-      navigate("/dogs")
+    
+      axios.put(`http://localhost:8000/dog/update/${id}`, dog).then(() => {
+        alert("Sent sucessfully");
+        window.location = `/viewDogs`;
+  
+      }).catch((err) => {
+        alert(err);
+      })
     }
 
   return (
@@ -100,7 +108,7 @@ export const UpdateDog = () => {
     <div style={{ paddingLeft: "10vh" }}>
       <h6 style={{ color: "#A4DE02" }}>Update General Information</h6>
     </div>
-    <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }}>
+    <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }} onSubmit={sendUpdateDetails}>
       <Form>
       <Row>
                     <Col>
@@ -207,6 +215,23 @@ export const UpdateDog = () => {
           >
             <option>Male</option>
             <option>Female</option>
+          </Form.Select> 
+          <Form.Label>Breed:</Form.Label>
+          <Form.Select
+            type="text"
+            placeholder="Breed"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="breed"
+            value={breed}
+            onChange={(e) => {setBreed(e.target.value)}}
+          >
+           <option value="Retrievr">Retrievr</option>
+                                                <option value="German Shepard">German Shepard</option>
+                                                <option value="Basset Hound">Basset Hound</option>
+                                                <option value="Rottwlier">Rottwlier</option>
           </Form.Select> 
           
                                         </div>
@@ -361,7 +386,7 @@ export const UpdateDog = () => {
         <div style={{ paddingLeft: "50%" }}>
           <Button
             type="submit"
-            onClick={updateDogDetails}
+          
             style={{ backgroundColor: "green" }}
           >
             UPDATE
@@ -373,3 +398,4 @@ export const UpdateDog = () => {
   )
   }
 
+  export default UpdateDog;
