@@ -17,6 +17,7 @@ import {DogsList} from "./pages/dogsPages/dogsList";
 import RescuedDogRegistration from "./components/RescuedDogRegistration";
 import MultiStepForm from "./components/RegisterRescuedDogs/MultiStepForm";
 import { SalesPage } from './pages/medicinePages/salesPage';
+import { SalesReport } from './reports/salesReport';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/rescuedDogRegistration" element ={<RescuedDogRegistration/>}/>
         <Route exact path ="/registerResDog" element={<MultiStepForm/>} />
         <Route exact path="/sales" element={<SalesPage />} />
+        <Route exact path="/salesreport" element={<SalesReport />} />
       </Routes>
     </BrowserRouter>
     </div>
