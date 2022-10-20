@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/addappointment" element={<Addappointment />} />
         <Route exact path="/adduser" element={<AddUser/>} />
         <Route exact path="/viewappointment" element={<Viewappointment/>} />
-        <Route exact path="/editappointment" element={<EditAppointment/>} />
+        <Route exact path="/editappointment/:id" element={<EditAppointment/>} />
         <Route exact path="/login" element={<Login/>} />
         <Route exact path ="/sidebar" element={<SideBar/>} />
         <Route exact path ="/" element={<Home/>} />

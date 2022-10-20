@@ -20,12 +20,12 @@ function Viewappointment(props) {
             })
         }
         getappointment();
-    }, [])
+    },[])
 
     //delete funtion
     function onDelete(_id){
         console.log(_id);
-        axios.delete("http://localhost:8000/appointment/"+_id ).then((res) =>{
+        axios.delete("http://localhost:8000/appointment/"+_id).then((res) =>{
            alert('Deleted Successfully'); 
            window.location.reload();
        }).catch((err) => {
@@ -34,8 +34,9 @@ function Viewappointment(props) {
       }
 
     
-      function handleShow(_id){
-        
+      function update(_id){
+        console.log(_id)
+        window.location = "/editappointment/"+_id
       }
 
     return (
@@ -107,7 +108,7 @@ function Viewappointment(props) {
                                         <td>{Appointment.time}</td>
                                         <td>{Appointment.reason}</td>
                                         <td>
-                                            <Button variant="outline-success" onClick={() => handleShow(Appointment._id, Appointment.from, Appointment.to, Appointment.time)} ><FaPencilAlt/></Button>
+                                            <Button variant="outline-success" onClick={() => update(Appointment._id)} ><FaPencilAlt/></Button>
                                         </td>
 
                                         <td>
