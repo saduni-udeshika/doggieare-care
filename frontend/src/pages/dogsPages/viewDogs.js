@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button,Card } from "react-bootstrap";
 import axios from "axios";
-import { FaPencilAlt, FaTrashAlt,FaLock } from "react-icons/fa";
+import { FaPencilAlt, FaTrashAlt,FaLock ,FaFilePdf,FaHeartbeat} from "react-icons/fa";
 import {Link} from 'react-router-dom'
 import { Fragment } from "react";
 
@@ -23,16 +23,17 @@ function ViewAll(props) {
         getDog();
     }, [])
 
-    // //delete funtion
-    // function onDelete(_id){
-    //     console.log(_id);
-    //     axios.delete("http://localhost:5000/dog/"+_id ).then((res) =>{
-    //        alert('Deleted Successfully'); 
-    //        window.location.reload();
-    //    }).catch((err) => {
-    //        alert(err.message);
-    //    })
-    //   }
+    //delete funtion
+    async function deleteDog(id){        
+        await axios.delete(`http://localhost:8000/dog/delete/${id}`).then(() => {
+            alert("Dog deleted successfully");
+            window.location = `/viewDogs`;
+
+          
+        }).catch((error) => {
+            alert(`Failed to delete \n${error.message}`)
+        }) 
+    } 
 
     return (
         <div style={{
@@ -77,7 +78,9 @@ function ViewAll(props) {
                             <th>Breed</th>
                             <th>Sex</th>
                             <th>Prescriptions</th>
-                       
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>Report</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,15 +105,26 @@ function ViewAll(props) {
                                         <td>{Dog.breed}</td>
                                         <td>{Dog.sex}</td>
                                        
-                                        <td>
+                                        <td><center>
                                         <Link
-                      to={`/addHealthDetails/${Dog._id}`}
+                      to={`/addHealth/${Dog._id}`}
                       className="btn btn-sm expenseButton"
-                    > <FaPencilAlt/>
-                    </Link> 
+                    > <FaHeartbeat/>
+                    </Link> </center>
                                         </td>
+                                        <td>
+                                            <Button variant="outline-success"><FaPencilAlt/></Button>
 
+                                        </td>
                                  
+                                        <td>
+                                            <Button variant="outline-danger" onClick={() => {if (window.confirm('Are you sure you want to delete this record?'))deleteDog(Dog._id)}}><FaTrashAlt/></Button>
+
+                                        </td>
+                                        <td>
+                                            <Button variant="outline-danger" ><FaFilePdf/></Button>
+
+                                        </td>
                                     </tr>
 
                                 );
@@ -120,7 +134,7 @@ function ViewAll(props) {
 
                 </Table >
                 <li className="nav-item" style={{color:'white'}}>
-          <Link to={"/New"} className="nav-link active">Add Dog Details</Link>
+          <Link to={"/addDog"} className="nav-link active">Add Dog Details</Link>
         </li>
             </div>
         </div>
