@@ -16,3 +16,10 @@ p{
 .description{
     font-size: small;
 }
+.searchbar{
+    background-color: #010020;
+    color: #F62681;
+    width: 30%;
+    margin-Left: 120px;
+    margin-top: 30px;
+}

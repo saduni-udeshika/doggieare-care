@@ -42,6 +42,20 @@ module.exports.createMedicine = async (req, res, _next) => {
       })
   }
 
+  module.exports.searchMedicine = async(req, res) => {
+    let result = await MedicineModel.find({
+      "$or":[
+        {
+          medicineName: {$regex: req.params.key}
+        },
+        {
+          category: {$regex: req.params.key}
+        }
+      ]
+    })
+    res.send(result);
+}
+
   module.exports.updateMedicine = async (req, res, _next) => {
       let id = req.params.id;
       const {medicineName, quantity, expDate, category, description, imgUrl} =req.body;
