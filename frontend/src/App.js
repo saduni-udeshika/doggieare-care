@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MedicinePage } from './pages/medicinePages/medicinePage';
 import { MedicineDetailsPage } from './pages/medicinePages/medicineDetailsPage';
 import AddDog from './pages/dogsPages/addDog';
-import AddHealthDetails from './pages/dogsPages/addHealthDetails'
+import AddHealthDetails from './pages/dogsPages/addHealth'
 import ViewAll from './pages/dogsPages/viewDogs'
 import Addappointment from "./screen/Addappointment";
 import AddUser from "./screen/AddUser";
@@ -28,7 +28,7 @@ function App() {
         <Route path="/medicines" element={<MedicineDetailsPage />} />
         <Route path="/updatemedicine/:id" element={<UpdateMedicinePage />} />
         <Route path="/addDog" element={<AddDog />} />
-        <Route path="/addHealthDetails/:id" element={<AddHealthDetails />} />
+        <Route path="/addHealth/:id" element={<AddHealthDetails />} />
         <Route path="/viewDogs" element={<ViewAll />} />
         <Route path="/dogsList" element={<DogsList />} />
         <Route exact path="/addappointment" element={<Addappointment />} />
