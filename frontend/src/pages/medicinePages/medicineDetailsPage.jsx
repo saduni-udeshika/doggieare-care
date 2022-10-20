@@ -91,7 +91,7 @@ export const MedicineDetailsPage = () => {
             <Form.Control
               className="searchbar"
               type=""
-              placeholder="Search...."
+              placeholder="Search by name or category...."
               name="medicineName"
               onChange={searchHandle}
             />
