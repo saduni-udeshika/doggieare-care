@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 import Form from "react-bootstrap/Form";
 import {MdEdit, MdDelete} from "react-icons/md";
 import Button from "react-bootstrap/esm/Button";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 export const MedicineDetailsPage = () => {
   const space2 = (
@@ -97,7 +97,9 @@ export const MedicineDetailsPage = () => {
             />
             <BsSearch style={{ margin: "10px" }} />
             {space2}{space2}{space2}{space2}{space2}
-          <Button style={{backgroundColor: "#FF003D" }}>GENERATE SALES REPORT</Button>
+          <Link to='/salesreport'>
+            <Button style={{backgroundColor: "#FF003D" }}>GENERATE SALES REPORT</Button>
+          </Link>
           </div>
           <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }}>
             {medicines.length > 0 ? medicines.map((medicine) => (
