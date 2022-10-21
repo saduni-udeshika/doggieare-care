@@ -57,7 +57,7 @@ export const MedicinePage = () => {
       <div style={{ paddingLeft: "10vh" }}>
         <h6 style={{ color: "#A4DE02" }}>Add Medicine</h6>
       </div>
-      <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }}>
+      <div className="formContainer">
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Medicine:</Form.Label>
@@ -141,6 +141,7 @@ export const MedicinePage = () => {
           </div>
         </Form>
       </div>
+      <div className="imageUploadContainer"></div>
     </div>
   );
 };
