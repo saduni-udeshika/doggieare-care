@@ -108,34 +108,35 @@ function UpdateDog  ()  {
     <div style={{ paddingLeft: "10vh" }}>
       <h6 style={{ color: "#A4DE02" }}>Update General Information</h6>
     </div>
-    <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }} onSubmit={sendUpdateDetails}>
+    <div className="container col-6" style={{ paddingLeft: "10vh", paddingRight: "10vh" }} onSubmit={sendUpdateDetails}>
       <Form>
       <Row>
                     <Col>
                       <br />
                       <div style={{ paddingLeft: '10vh' }}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          {/* <Form.Label>Dog ID:</Form.Label>
+          <Form.Label>Dog ID:</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Dog Id"
+            id="exampleInputexpenseCategory1"
             style={{
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="dogID"
+           
             value={dogID}
-            onChange={(e) => {setdogID(e.target.value)}}disabled
-          /> */}
+            onChange={(e) => {setdogID(e.target.value);}}disabled
+          />
           <Form.Label>Dog Name:</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Dog Name"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             style={{
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="dogName"
+          
             value={dogName}
             onChange={(e) => {setdogName(e.target.value)}}
           />
@@ -143,11 +144,13 @@ function UpdateDog  ()  {
           <Form.Control
             type="text"
             placeholder="Owner Name"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             style={{
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="ownerName"
+         
             value={ownerName}
             onChange={(e) => {setOwnerName(e.target.value)}}
           />
@@ -159,7 +162,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="address"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={address}
             onChange={(e) => {setAddress(e.target.value)}}
           />
@@ -197,7 +201,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="dob"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={dob}
             onChange={(e) => {setDob(e.target.value)}}
           />
@@ -209,7 +214,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="sex"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={sex}
             onChange={(e) => {setSex(e.target.value)}}
           >
@@ -224,7 +230,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="breed"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={breed}
             onChange={(e) => {setBreed(e.target.value)}}
           >
@@ -258,7 +265,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="weight"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={weight}
             onChange={(e) => {setWeight(e.target.value)}}
           />
@@ -270,7 +278,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="bloodGroup"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={bloodGroup}
             onChange={(e) => {setBloodGroup(e.target.value)}}
           />
@@ -282,7 +291,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="disease"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={disease}
             onChange={(e) => {setDisease(e.target.value)}}
           />
@@ -294,7 +304,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="lastDate"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={lastDate}
             onChange={(e) => {setLastDate(e.target.value)}}
           />
@@ -332,7 +343,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="nextDate"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={nextDate}
             onChange={(e) => {setNextDate(e.target.value)}}
           />
@@ -344,7 +356,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="medicine"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={medicine}
             onChange={(e) => {setMedicine(e.target.value)}}
           />
@@ -356,7 +369,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="labTests"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={labTests}
             onChange={(e) => {setLabTests(e.target.value)}}
           />
@@ -368,7 +382,8 @@ function UpdateDog  ()  {
               backgroundColor: "#010020",
               color: "#F62681",
             }}
-            name="doctor"
+            id="exampleInputexpenseCategory1"
+            required ={true}
             value={doctor}
             onChange={(e) => {setDoctor(e.target.value)}}
           >

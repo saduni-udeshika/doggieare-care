@@ -12,15 +12,15 @@ function ViewAll() {
     const [posts, setPosts] = useState([]);
     const space2 = <Fragment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Fragment>
 
-    useEffect(() => {
-        const loadPosts = async () => {
-          setLoading(true);
-          const response = await axios.get(`http://localhost:8000/dog/`);
-          setPosts(response.data);
-          setLoading(false);
-        };
-        loadPosts();
-      }, []);
+    // useEffect(() => {
+    //     const loadPosts = async () => {
+    //       setLoading(true);
+    //       const response = await axios.get(`http://localhost:8000/dog/`);
+    //       setPosts(response.data);
+    //       setLoading(false);
+    //     };
+    //     loadPosts();
+    //   }, []);
     useEffect(() => {
 
         //get funtion
@@ -32,7 +32,7 @@ function ViewAll() {
             })
         }
         getDog();
-    }, [dog])
+    }, [])
 
     //delete funtion
     async function deleteDog(id){        

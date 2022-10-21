@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button,Card } from "react-bootstrap";
 import axios from "axios";
-import { FaFilePdf,FaLock } from "react-icons/fa";
+import { FaFilePdf,FaLock,FaPencilAlt } from "react-icons/fa";
 import { Fragment } from "react";
 import jsPDF from 'jspdf'
+import {Link} from 'react-router-dom'
 
 function GeneratePrescriptions(props) {
     const [prescriptions, setPrescriptions] = useState([]);
@@ -46,12 +47,12 @@ function GeneratePrescriptions(props) {
         const unit = "pt";
         const size = "A4";
         const orientation = "landscape";
-        const marginLeft = 40;
+        // const marginLeft = 40;
         const doc = new jsPDF(orientation, unit, size);
         const title = `**** DOGGIE CARE HEALTH REPORT ****    (Dog ID : ${dogID})`;
         const name = `Dog's Name: ${dogName}`;
-        const gender = `Gender: ${sex}`;
-        const birth = `Date Of Birth: ${dob}`;
+        // const gender = `Gender: ${sex}`;
+        // const birth = `Date Of Birth: ${dob}`;
         const kg = `Weight: ${weight} kg`;
         const group = `Blood Group: ${bloodGroup}`;
         const diseas = `Disease :${disease}`;
@@ -62,13 +63,13 @@ function GeneratePrescriptions(props) {
         const vet = `Veteinary Surgeon: ${doctor}`;
 
       
-        const image2 = "https://res.cloudinary.com/dorcq99nr/image/upload/v1665646657/DoggieCare/black_sgno4i.jpg"
-        const success = `Doggy Care Veterinary Services` 
+        const image2 = "https://th.bing.com/th/id/R.709304af5fc11b7bb0c2a3a104485ffd?rik=8LN%2ftXvFwzq2LA&riu=http%3a%2f%2fwww.petdialog.co.uk%2fDog%2f_Images%2fhealth-dog.jpg&ehk=UWG3xTlqqHjhsHWhTi5OTGwpvCXDAL5pQlEDp4lp3MU%3d&risl=&pid=ImgRaw&r=0"
+        const success = `Welcome to Doggy Care Veterinary Services !` 
       //  const second = `Description about clinic` ;
       //    const third  = `We are committed to providing you with quality services. Thank you`; 
       //  const issuedate =`Report Issue Date: ${adoptDate}`;
-        const left = 20;
-        const top = 8;
+        // const left = 20;
+        // const top = 8;
         
         const lefts = 450;
         const tops = 200;
@@ -77,16 +78,16 @@ function GeneratePrescriptions(props) {
         doc.setFontSize(15);
         doc.text(200,40 ,title);
         doc.text(60,200, name );
-        doc.text(60,240, gender);
-        doc.text(60, 280,birth);
-        doc.text(60, 320, kg);
-        doc.text(60, 360, group);
-        doc.text(60, 400,diseas);
-        doc.text(60, 440,last);
-        doc.text(60, 440,next);
-        doc.text(60, 480,med);
+        doc.text(60,240, kg);
+        doc.text(60, 280,group);
+        doc.text(60, 320, diseas);
+        doc.text(60, 360, last);
+        doc.text(60, 400,next);
+        doc.text(60, 440,med);
         doc.text(60, 480,tests);
-        doc.text(60, 480,vet);
+        doc.text(60, 520,vet);
+        // doc.text(60, 480,vet);
+        // doc.text(60, 480,vet);
 
        
         doc.addImage(image2, 'PNG' , lefts, tops, imgWidths, imgHeights);
@@ -137,6 +138,9 @@ function GeneratePrescriptions(props) {
                             
                         <th>Dog ID</th>
                             <th>Dog Name</th>
+                            <th>Owner Name</th>
+                            <th>Address</th>
+                            <th>Breed</th>
                             <th>Gender</th>
                             <th>Date of Birth</th>
                             <th>Weight</th>
@@ -147,7 +151,7 @@ function GeneratePrescriptions(props) {
                             <th>Medicines</th>
                             <th>Lab Tests</th>
                             <th>Veterinary Suregon</th>
-
+                            <th>Edit</th>
                             <th>Prescriptions</th>
                            
                         </tr>
@@ -161,13 +165,16 @@ function GeneratePrescriptions(props) {
                             else if (Prescriptions.dogID.toLowerCase().includes(search.toLowerCase())) {
                                 return Prescriptions
                             }
-                        }).
-                            map((Prescriptions) => {
+                        }).map((Prescriptions) => {
+                            
 
                                 return (
                                     <tr key={Prescriptions._id}>
                                         <td>{Prescriptions.dogID}</td>
                                         <td>{Prescriptions.dogName}</td>
+                                        <td>{Prescriptions.ownerName}</td>
+                                        <td>{Prescriptions.address}</td>
+                                        <td>{Prescriptions.breed}</td>
                                         <td>{Prescriptions.sex}</td>
                                         <td>{Prescriptions.dob}</td>
                                         <td>{Prescriptions.weight}</td>
@@ -178,7 +185,10 @@ function GeneratePrescriptions(props) {
                                         <td>{Prescriptions.medicine}</td>
                                         <td>{Prescriptions.labTests}</td>
                                         <td>{Prescriptions.doctor}</td>
+                                        <td>
+                                        <Link to={`/UpdateHealth/${Prescriptions._id}`}> <Button variant="outline-success"><FaPencilAlt/></Button></Link>
 
+                                        </td>
                                         <td> <Button variant="outline-danger" onClick={()=> createPDF(Prescriptions._id,Prescriptions.dogID,Prescriptions.dogName,Prescriptions.sex,Prescriptions.dob,Prescriptions.weight,Prescriptions.bloodGroup,Prescriptions.disease, Prescriptions.lastDate, Prescriptions.nextDate, Prescriptions.medicine, Prescriptions.labTests, Prescriptions.doctor )}><FaFilePdf/></Button></td>
                                       
                   

@@ -59,7 +59,7 @@ function AddHealthDetails() {
 
     axios.put(`http://localhost:8000/dog/update/${id}`, updateDetails).then(() => {
       alert("Added sucessfully");
-      window.location = `/`;
+      window.location = `/viewDogs`;
 
     }).catch((err) => {
       alert(err);
@@ -236,7 +236,7 @@ function AddHealthDetails() {
             </select>
           </div>
           <button type="submit" className="btn btn-success">
-            ADD
+            UPDATE
           </button>
 
         

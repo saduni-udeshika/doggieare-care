@@ -18,6 +18,7 @@ import UpdateDog from "./pages/dogsPages/updateDog"
 import GeneratePrescriptions from "./pages/dogsPages/generatePrescriptions"
 import RescuedDogRegistration from "./components/RescuedDogRegistration";
 import MultiStepForm from "./components/RegisterRescuedDogs/MultiStepForm";
+import UpdateHealth from './pages/dogsPages/UpdateHealth';
 
 function App() {
   return (
@@ -41,6 +42,8 @@ function App() {
         <Route exact path ="/registerResDog" element={<MultiStepForm/>} />
         <Route exact path ="/UpdateDog/:id" element={<UpdateDog/>} />
         <Route exact path ="/prescriptions" element={<GeneratePrescriptions/>} />
+        <Route exact path ="/UpdateHealth/:id" element={<UpdateHealth/>} />
+
 
       </Routes>
     </BrowserRouter>
