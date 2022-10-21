@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button,Card } from "react-bootstrap";
 import axios from "axios";
-import { FaPencilAlt, FaTrashAlt,FaLock ,FaFilePdf,FaHeartbeat} from "react-icons/fa";
+import {  FaTrashAlt,FaLock,FaHeartbeat} from "react-icons/fa";
 import {Link} from 'react-router-dom'
 import { Fragment } from "react";
 
 function ViewAll() {
     const [dog, setDog] = useState([]);
     const [search, setSearch] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [posts, setPosts] = useState([]);
+    // const [loading, setLoading] = useState(false);
+    // const [posts, setPosts] = useState([]);
     const space2 = <Fragment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Fragment>
 
     // useEffect(() => {
@@ -89,7 +89,7 @@ function ViewAll() {
                             <th>Breed</th>
                             <th>Sex</th>
                             <th>Prescriptions</th>
-                            <th>Edit</th>
+                          
                             <th>Delete</th>
                           
                         </tr>
@@ -123,10 +123,10 @@ function ViewAll() {
                     > <FaHeartbeat/>
                     </Link> </center>
                                         </td>
-                                        <td>
+                                        {/* <td>
                                         <Link to={`/UpdateDog/${Dog._id}`}> <Button variant="outline-success"><FaPencilAlt/></Button></Link>
 
-                                        </td>
+                                        </td> */}
                                  
                                         <td>
                                             <Button variant="outline-danger" onClick={() => {if (window.confirm('Are you sure you want to delete this record?'))deleteDog(Dog._id)}}><FaTrashAlt/></Button>

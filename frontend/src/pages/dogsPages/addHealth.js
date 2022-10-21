@@ -235,10 +235,11 @@ function AddHealthDetails() {
 
             </select>
           </div>
+          <br/><center>
           <button type="submit" className="btn btn-success">
             UPDATE
           </button>
-
+          </center>
         
 
         </form>

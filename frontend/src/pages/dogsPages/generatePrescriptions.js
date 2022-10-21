@@ -121,7 +121,7 @@ function GeneratePrescriptions(props) {
 
                 <div style={{ paddingleft: "2vh", paddingBottom: "1vh", paddingTop: "1vh" }}>
                             <div style={{ paddingBottom: "1vh", paddingTop: "1vh" }}>
-                                <input type="text" placeholder="Search from 'Name' " className="mr-2"
+                                <input type="text" placeholder="Search from 'ID' " className="mr-2"
                                     onChange={(e) => {
                                         setSearch(e.target.value);
                                     }} />
