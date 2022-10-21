@@ -20,6 +20,13 @@ import RescuedDogRegistration from "./components/RescuedDogRegistration";
 import MultiStepForm from "./components/RegisterRescuedDogs/MultiStepForm";
 import UpdateHealth from './pages/dogsPages/UpdateHealth';
 
+import { SalesPage } from './pages/medicinePages/salesPage';
+import { SalesReport } from './reports/salesReport';
+import SideBar from './screen/SideBar';
+import Home from './screen/Home';
+import EditAppointment from './screen/EditAppointment';
+
+
 function App() {
   return (
     <div className="App">
@@ -35,15 +42,22 @@ function App() {
         <Route exact path="/addappointment" element={<Addappointment />} />
         <Route exact path="/adduser" element={<AddUser/>} />
         <Route exact path="/viewappointment" element={<Viewappointment/>} />
+        <Route exact path="/editappointment/:id" element={<EditAppointment/>} />
         <Route exact path="/login" element={<Login/>} />
+        <Route exact path ="/sidebar" element={<SideBar/>} />
+        <Route exact path ="/" element={<Home/>} />
         <Route exact path="/viewstrayPuppies" element={<ViewRescuedDogs/>} />
         <Route exact path="/adoption" element={<Adoption/>} />
         <Route exact path="/rescuedDogRegistration" element ={<RescuedDogRegistration/>}/>
         <Route exact path ="/registerResDog" element={<MultiStepForm/>} />
+
         <Route exact path ="/UpdateDog/:id" element={<UpdateDog/>} />
         <Route exact path ="/prescriptions" element={<GeneratePrescriptions/>} />
         <Route exact path ="/UpdateHealth/:id" element={<UpdateHealth/>} />
 
+
+        <Route exact path="/sales" element={<SalesPage />} />
+        <Route exact path="/salesreport" element={<SalesReport />} />
 
       </Routes>
     </BrowserRouter>

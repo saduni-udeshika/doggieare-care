@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table, Button,Card } from "react-bootstrap";
 import axios from "axios";
 import { FaPencilAlt, FaTrashAlt,FaLock } from "react-icons/fa";
-import { Fragment } from "react";
+import { Fragment} from "react";
 
 function Viewappointment(props) {
     const [appointment, setappointment] = useState([]);
@@ -13,19 +13,19 @@ function Viewappointment(props) {
 
         //get funtion
         function getappointment() {
-            axios.get("http://localhost:5000/appointment/").then((res) => {
+            axios.get("http://localhost:8000/appointment/").then((res) => {
                 setappointment(res.data);
             }).catch((err) => {
                 alert(err.message);
             })
         }
         getappointment();
-    }, [])
+    },[])
 
     //delete funtion
     function onDelete(_id){
         console.log(_id);
-        axios.delete("http://localhost:5000/appointment/"+_id ).then((res) =>{
+        axios.delete("http://localhost:8000/appointment/"+_id).then((res) =>{
            alert('Deleted Successfully'); 
            window.location.reload();
        }).catch((err) => {
@@ -34,8 +34,9 @@ function Viewappointment(props) {
       }
 
     
-      function handleShow(_id){
-        
+      function update(_id){
+        console.log(_id)
+        window.location = "/editappointment/"+_id
       }
 
     return (
@@ -53,7 +54,7 @@ function Viewappointment(props) {
                 }}>
 <div style={{ paddingBottom: "8vh", paddingTop: "5vh", paddingLeft: "8vh", paddingRight: "5vh" }}>
             <div style={{ paddingBottom: "5vh", paddingTop: "5vh", paddingLeft: "5vh", paddingRight: "5vh" }}>
-                <h1 style={{color:'white'}}>Table</h1>
+                <h1 style={{color:'white'}}>Appoinments</h1>
                 <div style={{ paddingleft: "10vh", paddingBottom: "1vh", paddingTop: "1vh" }} >
 
                 <div style={{ paddingleft: "2vh", paddingBottom: "1vh", paddingTop: "1vh" }}>
@@ -107,7 +108,7 @@ function Viewappointment(props) {
                                         <td>{Appointment.time}</td>
                                         <td>{Appointment.reason}</td>
                                         <td>
-                                            <Button variant="outline-success" onClick={() => handleShow(Appointment._id, Appointment.from, Appointment.to, Appointment.time)} ><FaPencilAlt/></Button>
+                                            <Button variant="outline-success" onClick={() => update(Appointment._id)} ><FaPencilAlt/></Button>
                                         </td>
 
                                         <td>

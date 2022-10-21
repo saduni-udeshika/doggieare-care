@@ -1,5 +1,5 @@
 const express = require('express');
-const {createMedicine, deleteMedicine, getMedicine, updateMedicine, getMedicineById} = require('../controllers/medicineController.js');
+const {createMedicine, deleteMedicine, getMedicine, updateMedicine, getMedicineById, searchMedicine} = require('../controllers/medicineController.js');
 const router = express.Router();
 const cloudinary = require('../utils/cloudinary');
 const upload = require ('../utils/multer');
@@ -17,6 +17,8 @@ router.post("/upload", upload.single("image"), async (req, res) => {
 router.get('/',getMedicine);
 
 router.get('/:id', getMedicineById)
+
+router.get('/search/:key', searchMedicine)
 
 router.post('/', createMedicine);
 

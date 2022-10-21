@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getMedicine, deleteMedicine } from "../../services/medicineService";
+import { getMedicine, deleteMedicine, searchMedicine } from "../../services/medicineService";
 import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import Form from "react-bootstrap/Form";
 import {MdEdit, MdDelete} from "react-icons/md";
 import Button from "react-bootstrap/esm/Button";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 export const MedicineDetailsPage = () => {
   const space2 = (
@@ -32,7 +32,18 @@ export const MedicineDetailsPage = () => {
   };
 
   // search bar
-  const handleChange = (event) => {};
+  const searchHandle = async(event) => {
+    let key = event.target.value;
+    if(key){
+      let medicineResponse = await searchMedicine(key)
+      // medicineResponse = await medicineResponse.data.json()
+      if(medicineResponse){
+        setMedicines(medicineResponse.data)
+      }
+    }else{
+      getMedicines();
+    }
+  };
 
   return (
     <div
@@ -78,23 +89,20 @@ export const MedicineDetailsPage = () => {
           </div>
           <div style={{ display: "flex", flexDirection: "raw" }}>
             <Form.Control
-              type="text"
-              placeholder="Search...."
-              style={{
-                backgroundColor: "#010020",
-                color: "#F62681",
-                width: "30%",
-                marginLeft: "120px",
-              }}
+              className="searchbar"
+              type=""
+              placeholder="Search by name or category...."
               name="medicineName"
-              onChange={(e) => handleChange(e)}
+              onChange={searchHandle}
             />
             <BsSearch style={{ margin: "10px" }} />
             {space2}{space2}{space2}{space2}{space2}
-          <Button style={{backgroundColor: "#FF003D" }}>GENERATE SALES REPORT</Button>
+          <Link to='/salesreport'>
+            <Button style={{backgroundColor: "#FF003D" }}>GENERATE SALES REPORT</Button>
+          </Link>
           </div>
           <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }}>
-            {medicines.map((medicine) => (
+            {medicines.length > 0 ? medicines.map((medicine) => (
               <div key={medicine._id}>
                 <div className="medicine-card">
                   <img src={medicine.imgUrl} alt="medicine" />
@@ -124,7 +132,7 @@ export const MedicineDetailsPage = () => {
                   <p className="description">{medicine.description}</p>
                 </div>
               </div>
-            ))}
+            )):<h1>Medicine Not Found</h1>}
           </div>
         </div>
       </div>

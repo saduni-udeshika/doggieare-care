@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { createMedicine } from "../../services/medicineService.js";
 import "./medicine.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
+import { createSales } from "../../services/salesService";
 
-export const MedicinePage = () => {
+export const SalesPage = () => {
   const space2 = (
     <Fragment>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -14,18 +14,17 @@ export const MedicinePage = () => {
   );
   const [inputValues, setInputValues] = useState({
     medicineName: "",
-    quantity: "",
-    expDate: "",
+    soldQuantity: "",
     category: "",
-    description: "",
-    imgUrl: "",
+    soldPrice: "",
+    remainingAmount: "",
   });
   const handleChange = (event) => {
     setInputValues({ ...inputValues, [event.target.name]: event.target.value });
   };
   const sendMedicineData = async (event) => {
     event.preventDefault();
-    await createMedicine(inputValues);
+    await createSales(inputValues);
 
     window.location("/medicines")
   };
@@ -55,15 +54,15 @@ export const MedicinePage = () => {
         </p>
       </div>
       <div style={{ paddingLeft: "10vh" }}>
-        <h6 style={{ color: "#A4DE02" }}>Add Medicine</h6>
+        <h6 style={{ color: "#A4DE02" }}>Add Sales Details</h6>
       </div>
-      <div className="formContainer">
+      <div style={{ paddingLeft: "10vh", paddingRight: "10vh" }}>
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Medicine:</Form.Label>
+            <Form.Label>Medicine Name:</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Medicine"
+              placeholder="Medicine Name"
               style={{
                 backgroundColor: "#010020",
                 color: "#F62681",
@@ -71,26 +70,15 @@ export const MedicinePage = () => {
               name="medicineName"
               onChange={(e) => handleChange(e)}
             />
-            <Form.Label>QTY:</Form.Label>
+            <Form.Label>Sold Quantity:</Form.Label>
             <Form.Control
               type="number"
-              placeholder="QTY"
+              placeholder="Sold Quantity"
               style={{
                 backgroundColor: "#010020",
                 color: "#F62681",
               }}
-              name="quantity"
-              onChange={(e) => handleChange(e)}
-            />
-            <Form.Label>Expiry Date:</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="Expiry Date"
-              style={{
-                backgroundColor: "#010020",
-                color: "#F62681",
-              }}
-              name="expDate"
+              name="soldQuantity"
               onChange={(e) => handleChange(e)}
             />
             <Form.Label>Category:</Form.Label>
@@ -107,26 +95,26 @@ export const MedicinePage = () => {
               <option>Tablet</option>
               <option>Vaccine</option>
             </Form.Select>
-            <Form.Label>Description:</Form.Label>
+            <Form.Label>Sold Price:</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Description"
+              type="number"
+              placeholder="Sold Price for One Unit"
               style={{
                 backgroundColor: "#010020",
                 color: "#F62681",
               }}
-              name="description"
+              name="soldPrice"
               onChange={(e) => handleChange(e)}
             />
             <br />
             <Form.Control
               type="text"
-              placeholder="url"
+              placeholder="Remaining Amount"
               style={{
                 backgroundColor: "#010020",
                 color: "#F62681",
               }}
-              name="imgUrl"
+              name="remainingAmount"
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
@@ -141,7 +129,7 @@ export const MedicinePage = () => {
           </div>
         </Form>
       </div>
-      <div className="imageUploadContainer"></div>
     </div>
   );
 };
+
