@@ -1,0 +1,16 @@
+.imagePreview{
+    margin: 2rem 0 2 ren 2rem;
+    padding: 2rem;
+    border: 1px solid #fff;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: gray;
+    background-color: #fff;
+}
+img{
+    max-width: 100%;
+}

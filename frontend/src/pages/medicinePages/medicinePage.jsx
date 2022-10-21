@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Fragment } from "react";
 import { FaLock } from "react-icons/fa";
+import { ImagePreview } from "../../components/ImagePreview/ImagePreview.jsx";
+import { Card, Col, Row } from "react-bootstrap";
 
 export const MedicinePage = () => {
   const space2 = (
@@ -20,15 +22,36 @@ export const MedicinePage = () => {
     description: "",
     imgUrl: "",
   });
+  const [image, setImage] = useState("");
+
   const handleChange = (event) => {
     setInputValues({ ...inputValues, [event.target.name]: event.target.value });
   };
+
+//   const handleImage = async(event) => {
+//     const file = event.target.files[0]
+//     TransformFile(file)
+//   }
+
+//   const TransformFile = (file) => {
+//     const reader = new FileReader(file);
+
+//     if(file){
+//       reader.readAsDataURL(file)
+//       reader.onloadend = ()=>{
+//         setImage(reader.result);
+//       };
+//     }else{
+//     setImage("")
+//   }
+// }
   const sendMedicineData = async (event) => {
     event.preventDefault();
     await createMedicine(inputValues);
 
     window.location("/medicines")
   };
+
   return (
     <div
       style={{
@@ -54,82 +77,103 @@ export const MedicinePage = () => {
           <FaLock />
         </p>
       </div>
+      <div>
+      <Card style={{
+        backgroundColor: '#062464',
+      }}>
+      <div style={{ padding: '7vh'}}>
+      <Card style={{
+        backgroundColor: '#010020',
+      }}>
+      <Card.Body>
       <div style={{ paddingLeft: "10vh" }}>
         <h6 style={{ color: "#A4DE02" }}>Add Medicine</h6>
       </div>
       <div className="formContainer">
         <Form>
+        <Row>
+          <Col>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Medicine:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Medicine"
-              style={{
-                backgroundColor: "#010020",
-                color: "#F62681",
-              }}
-              name="medicineName"
-              onChange={(e) => handleChange(e)}
-            />
-            <Form.Label>QTY:</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="QTY"
-              style={{
-                backgroundColor: "#010020",
-                color: "#F62681",
-              }}
-              name="quantity"
-              onChange={(e) => handleChange(e)}
-            />
-            <Form.Label>Expiry Date:</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="Expiry Date"
-              style={{
-                backgroundColor: "#010020",
-                color: "#F62681",
-              }}
-              name="expDate"
-              onChange={(e) => handleChange(e)}
-            />
-            <Form.Label>Category:</Form.Label>
-            <Form.Select
-              type="text"
-              placeholder="Category"
-              style={{
-                backgroundColor: "#010020",
-                color: "#F62681",
-              }}
-              name="category"
-              onChange={(e) => handleChange(e)}
-            >
-              <option>Tablet</option>
-              <option>Vaccine</option>
-            </Form.Select>
-            <Form.Label>Description:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Description"
-              style={{
-                backgroundColor: "#010020",
-                color: "#F62681",
-              }}
-              name="description"
-              onChange={(e) => handleChange(e)}
-            />
-            <br />
-            <Form.Control
-              type="text"
-              placeholder="url"
-              style={{
-                backgroundColor: "#010020",
-                color: "#F62681",
-              }}
-              name="imgUrl"
-              onChange={(e) => handleChange(e)}
-            />
-          </Form.Group>
+          <Form.Label>Medicine:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Medicine"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="medicineName"
+            onChange={(e) => handleChange(e)}
+          />
+          <Form.Label>QTY:</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="QTY"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="quantity"
+            onChange={(e) => handleChange(e)}
+          />
+          <Form.Label>Expiry Date:</Form.Label>
+          <Form.Control
+            type="date"
+            placeholder="Expiry Date"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="expDate"
+            onChange={(e) => handleChange(e)}
+          />
+          <Form.Label>Category:</Form.Label>
+          <Form.Select
+            type="text"
+            placeholder="Category"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="category"
+            onChange={(e) => handleChange(e)}
+          >
+            <option>Tablet</option>
+            <option>Vaccine</option>
+          </Form.Select>
+          <Form.Label>Description:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Description"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="description"
+            onChange={(e) => handleChange(e)}
+          />
+          <br />
+          <Form.Control
+            type="text"
+            placeholder="url"
+            style={{
+              backgroundColor: "#010020",
+              color: "#F62681",
+            }}
+            name="imgUrl"
+            onChange={(e) => handleChange(e)}
+          />
+        </Form.Group>
+          </Col>
+          <Col>
+          <div className="imageUploadContainer">
+
+        <ImagePreview>
+        {<img src={image} alt="medicine" />}
+        </ImagePreview>
+          </div>
+          </Col>
+        </Row>
           <div style={{ paddingLeft: "50%" }}>
             <Button
               type="submit"
@@ -141,7 +185,11 @@ export const MedicinePage = () => {
           </div>
         </Form>
       </div>
-      <div className="imageUploadContainer"></div>
+      </Card.Body>
+      </Card>
+      </div>
+      </Card>
+      </div>
     </div>
   );
 };
