@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useState , useEffect } from "react"
 import { FaLock } from "react-icons/fa";
 import { Fragment } from "react";
 import { Card, Button, Row, Col, Form } from 'react-bootstrap';
 import axios from "axios";
-;
+import { useParams } from 'react-router-dom';
 
 export default function DogRegistration() {
   const space2 = <Fragment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Fragment>
@@ -14,8 +14,11 @@ export default function DogRegistration() {
   const [street, setStreet] = useState(" ");
   const [city, setCity] = useState(" ");
   const [adoptDate, setAdoptDate]= useState(" ");
-  
-  function sendData(e) {
+  const [adoption, setadoption] = useState([]);
+  let params = useParams();
+
+
+  /*function sendData(e) {
 
     e.preventDefault();
 
@@ -46,8 +49,74 @@ export default function DogRegistration() {
     }).catch((err) => {
       alert("error");
     })
+  }*/
+
+  useEffect(() => {
+
+
+    //get funtion
+    function getadoption() {
+
+      //console.log(_id);
+
+      axios.get(`http://localhost:8000/createRescuedDog/get/${params.id}`).then((res) => {
+
+        setadoption(res.data);
+       
+        setDogName(res.data.dog.dogName);
+        setPerspectivePetParents(res.data.dog.perspectivePetParents);
+        setContactNo(res.data.dog.contactNo);
+        setBuildingNo(res.data.dog.buildingNo);
+        setStreet(res.data.dog.street);
+       // setCity(res.data.dog.city);
+        setAdoptDate(res.data.dog.adoptDate);
+        console.log(res.data.dog.dogName);
+        console.log(res.data);
+
+      }).catch((err) => {
+        alert(err.message);
+      })
+    }
+    getadoption();
+  }, [])
+
+
+
+
+  //update function
+  function sendData(e) {
+
+    e.preventDefault();
+
+    const newAdoption= {
+      
+    
+      dogName,
+      perspectivePetParents,
+      contactNo,
+      buildingNo,
+      street,
+      //city,
+      adoptDate
+    }
+
+    axios.put(`http://localhost:8000/createRescuedDog/updateAdoptDog/${params.id}`, newAdoption).then(() => {
+      alert("Puppies Updated");
+      window.location = '/viewstrayPuppies';
+
+      setDogName('');
+      setPerspectivePetParents('');
+      setContactNo('');
+      setBuildingNo('');
+      setStreet('');
+     // setCity('');
+      setAdoptDate('');
+     
+
+    }).catch((err) => {
+      alert("error");
+    })
   }
-  
   return (
     <div style={{
       backgroundColor: '#010020',
@@ -77,10 +146,20 @@ export default function DogRegistration() {
                     <Col>
                       <br />
                       <div style={{ paddingLeft: '10vh' }}>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Form.Label style={{ color: 'white' }}><b>Dog Name*: </b></Form.Label>
+                          <Form.Control type="text" value = {dogName}
+                            onChange={(e) => setDogName(e.target.value)}
+                            placeholder=" Enter Parents Name"
+                            style={{
+                              backgroundColor: '#010020',
+                              color: '#F62681'
+                            }}readOnly />
+                        </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label style={{ color: 'white' }}><b>Perspective PetParents*: </b></Form.Label>
-                          <Form.Control type="text"
+                          <Form.Control type="text" value = {perspectivePetParents} 
                             onChange={(e) => setPerspectivePetParents(e.target.value)}
 
                             placeholder=" Enter Parents Name" style={{
@@ -91,7 +170,7 @@ export default function DogRegistration() {
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label style={{ color: 'white' }}><b>Home/BuildingNo*: </b> </Form.Label>
-                          <Form.Control type="text"
+                          <Form.Control type="text"  value = {buildingNo} 
                             onChange={(e) => setBuildingNo(e.target.value)}
 
                             placeholder="9/A" style={{
@@ -102,7 +181,7 @@ export default function DogRegistration() {
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label style={{ color: 'white' }}><b>City*: </b></Form.Label>
-                          <Form.Control type="text"
+                          <Form.Control type="text"  value = {city} 
                             onChange={(e) => setCity(e.target.value)}
 
                             placeholder="Colombo" style={{
@@ -121,7 +200,7 @@ export default function DogRegistration() {
                     
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label style={{ color: 'white' }}><b>Contact Number*:</b> </Form.Label>
-                          <Form.Control type="text"
+                          <Form.Control type="text"   value = {contactNo}
                             onChange={(e) => setContactNo(e.target.value)}
 
                             placeholder=" Enter Contact Number" style={{
@@ -133,7 +212,7 @@ export default function DogRegistration() {
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label style={{ color: 'white' }}><b>Street*: </b></Form.Label>
-                          <Form.Control type="text"
+                          <Form.Control type="text" value={street}
                             onChange={(e) => setStreet(e.target.value)}
 
                             placeholder=" Flower Road" style={{
@@ -144,7 +223,7 @@ export default function DogRegistration() {
                       
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label style={{ color: 'white' }}><b>Date*: </b></Form.Label>
-                          <Form.Control type="date"
+                          <Form.Control type="date" value={adoptDate}
                             onChange={(e) => setAdoptDate(e.target.value)}
 
                             placeholder=" Enter Date" style={{
