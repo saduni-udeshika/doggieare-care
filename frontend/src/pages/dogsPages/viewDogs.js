@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button,Card } from "react-bootstrap";
 import axios from "axios";
-import { FaPencilAlt, FaTrashAlt,FaLock ,FaFilePdf,FaHeartbeat} from "react-icons/fa";
+import {  FaTrashAlt,FaLock,FaHeartbeat} from "react-icons/fa";
 import {Link} from 'react-router-dom'
 import { Fragment } from "react";
 
-function ViewAll(props) {
+function ViewAll() {
     const [dog, setDog] = useState([]);
     const [search, setSearch] = useState("");
+    // const [loading, setLoading] = useState(false);
+    // const [posts, setPosts] = useState([]);
     const space2 = <Fragment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Fragment>
 
+    // useEffect(() => {
+    //     const loadPosts = async () => {
+    //       setLoading(true);
+    //       const response = await axios.get(`http://localhost:8000/dog/`);
+    //       setPosts(response.data);
+    //       setLoading(false);
+    //     };
+    //     loadPosts();
+    //   }, []);
     useEffect(() => {
 
         //get funtion
@@ -78,9 +89,9 @@ function ViewAll(props) {
                             <th>Breed</th>
                             <th>Sex</th>
                             <th>Prescriptions</th>
-                            <th>Edit</th>
+                          
                             <th>Delete</th>
-                            <th>Report</th>
+                          
                         </tr>
                     </thead>
                     <tbody>
@@ -112,19 +123,16 @@ function ViewAll(props) {
                     > <FaHeartbeat/>
                     </Link> </center>
                                         </td>
-                                        <td>
-                                            <Button variant="outline-success"><FaPencilAlt/></Button>
+                                        {/* <td>
+                                        <Link to={`/UpdateDog/${Dog._id}`}> <Button variant="outline-success"><FaPencilAlt/></Button></Link>
 
-                                        </td>
+                                        </td> */}
                                  
                                         <td>
                                             <Button variant="outline-danger" onClick={() => {if (window.confirm('Are you sure you want to delete this record?'))deleteDog(Dog._id)}}><FaTrashAlt/></Button>
 
                                         </td>
-                                        <td>
-                                            <Button variant="outline-danger" ><FaFilePdf/></Button>
-
-                                        </td>
+                                     
                                     </tr>
 
                                 );

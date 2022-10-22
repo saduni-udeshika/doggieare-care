@@ -13,14 +13,19 @@ import Viewappointment from "./screen/Viewappointment";
 import { UpdateMedicinePage } from './pages/medicinePages/updateMedicinePage';
 import ViewRescuedDogs from "./components/ViewRescuedDogs";
 import Adoption from "./components/Adoption";
-import {DogsList} from "./pages/dogsPages/dogsList";
+import {DogList} from "./pages/dogsPages/dogsList";
+import UpdateDog from "./pages/dogsPages/updateDog"
+import GeneratePrescriptions from "./pages/dogsPages/generatePrescriptions"
 import RescuedDogRegistration from "./components/RescuedDogRegistration";
 import MultiStepForm from "./components/RegisterRescuedDogs/MultiStepForm";
+import UpdateHealth from './pages/dogsPages/UpdateHealth';
+
 import { SalesPage } from './pages/medicinePages/salesPage';
 import { SalesReport } from './reports/salesReport';
 import SideBar from './screen/SideBar';
 import Home from './screen/Home';
 import EditAppointment from './screen/EditAppointment';
+
 
 function App() {
   return (
@@ -33,7 +38,7 @@ function App() {
         <Route path="/addDog" element={<AddDog />} />
         <Route path="/addHealth/:id" element={<AddHealthDetails />} />
         <Route path="/viewDogs" element={<ViewAll />} />
-        <Route path="/dogsList" element={<DogsList />} />
+        <Route path="/dogs" element={<DogList />} />
         <Route exact path="/addappointment" element={<Addappointment />} />
         <Route exact path="/adduser" element={<AddUser/>} />
         <Route exact path="/viewappointment" element={<Viewappointment/>} />
@@ -45,8 +50,15 @@ function App() {
         <Route exact path="/adoption" element={<Adoption/>} />
         <Route exact path="/rescuedDogRegistration" element ={<RescuedDogRegistration/>}/>
         <Route exact path ="/registerResDog" element={<MultiStepForm/>} />
+
+        <Route exact path ="/UpdateDog/:id" element={<UpdateDog/>} />
+        <Route exact path ="/prescriptions" element={<GeneratePrescriptions/>} />
+        <Route exact path ="/UpdateHealth/:id" element={<UpdateHealth/>} />
+
+
         <Route exact path="/sales" element={<SalesPage />} />
         <Route exact path="/salesreport" element={<SalesReport />} />
+
       </Routes>
     </BrowserRouter>
     </div>

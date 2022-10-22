@@ -17,6 +17,6 @@ router.put("/update/:id", updateDog);
 router.get("/", viewDogs);
 
 //view one dog
-router.get("/get/:id", viewOneDog);
+router.get("/:id", viewOneDog);
 
 module.exports = router;
